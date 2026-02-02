@@ -1,0 +1,251 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*************************************
+  Navbar starts from here
+************************************/
+header{
+ height: 4rem;
+ width: 96%;
+ background-color:transparent;
+ 
+ border-radius: 35px;
+}
+
+.logo{
+  color: #EDF2F4;
+  background-color:#8D99AE;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  max-width: 100px;
+}
+
+.container{
+  max-width: 132rem;
+  margin: auto;
+  height: 5rem;
+  
+}
+
+.grid{
+ display: grid; 
+ background: transparent;
+}
+
+.Nav-grid{
+  grid-template-columns: 0.5fr 1fr;
+  align-items: center;
+  height: 4rem;
+  width: 100%;
+  padding: 0px 3.2rem;
+}
+
+nav ul{
+  display: flex;
+  justify-content: flex-end;
+  gap: 3.2rem;
+  
+}
+.link{
+  text-decoration: none;
+  list-style: none;
+  color: #EDF2F4;
+}
+li{
+  transform: scale(1);
+  list-style: none;
+  transition: transform ease 0.3s;
+}
+
+
+
+li:hover{
+  text-decoration: underline ;
+  transform: scale(1.1);
+}
+
+.ham-menu{
+  display: none;
+}
+
+button{
+  height: 25px;
+  width: 35px;
+  background-color: transparent;
+  color: #2B2D42;
+  font-weight: 900;
+  border: none;
+}
+
+/*===============================================================
+ Hero sectoin starts here
+===============================================================*/
+/* Container styling */
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 10%;
+  height: 80vh;
+  width: 100vw;
+  
+  gap: 2rem;
+  animation: fadeUp 1s linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+/* Text Section */
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  line-height: 1.2;
+  color: #2d3436;
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  color: #0984e3;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #636e72;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  min-width: 150px;
+  height: 25px;
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 0.8rem 2rem;
+  background-color: #0984e3;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-secondary {
+  padding: 0.8rem 2rem;
+  background-color: transparent;
+  color: #0984e3;
+  border: 2px solid #0984e3;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Image Section */
+.hero-image-container {
+  display: hidden;
+  flex: 1;
+  display: none;
+  justify-content: center;
+}
+
+.hero-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design (Mobile) */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 5%;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-image-container {
+    order: -1;
+   /* Moves image above text on mobile */
+  }
+}
+
+
+/*================================================================
+Media queries starts here
+=================================================================*/
+@media screen and (max-width : 970px){
+  
+  
+  .Nav-grid{
+    align-content: center;
+    padding: 0px 2.2rem;
+  }
+  
+  .pc-menu{
+    display: none;
+     cursor: pointer;
+  }
+  
+  .ham-menu{
+    display: inline-block;
+    cursor: pointer;
+    text-align: end;
+  }
+  
+  .mobile-menu{
+    
+    width: 100%;
+    position: absolute;
+    top: 5rem;
+    background-color:#8D99AE;
+    opacity: 0.9px;
+    left: 0;
+    border-radius: 15px;
+    z-index: 100;
+     cursor: pointer;
+    }
+  
+  
+  .mobile-menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+    .mobile-menu li:first-child{
+      margin-top: 10px;
+    }
+  
+    .mobile-menu li:last-child{
+      margin-bottom: 10px;
+    }
+} 
