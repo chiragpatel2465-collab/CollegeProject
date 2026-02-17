@@ -1,15 +1,48 @@
 import React from 'react'
 import '../Component.css';
+import Herosection from './Herosection';
+import CourseCard from './Course';
+import ViewCourse from './ViewCourse';
 const Contact = () => {
+  let contactFieldData = [{
+      "id" : 1,
+      "fieldName" : "Name",
+      "placeholder" : "Enter Name"
+    },
+  {
+      "id" : 2,
+      "fieldName" : "Email",
+      "placeholder" : "Enter Email Adress"
+    },
+  {
+      "id" : 3,
+      "fieldName" : "Phone Number",
+      "placeholder" : "Enter Phone Number"
+
+    },
+  {
+      "id" : 4,
+      "fieldName" : "Subject",
+      "placeholder" : "Enter Subject"
+    }]
+
+  
   return (
-    <section>
-      <div className="contact-text">
-        <input  type="text" placeholder="Enter your name" requiered/>
-         <input  type="number" placeholder="Enter your contact Number" requiered/>
-          <input  type="email" placeholder="Enter your email" requiered/>
-           <textarea type="textarea" placeholder="Enter your message"/>
-           <button>submit</button>
-      </div>
+        <section className='contact-text'>
+     <div>{contactFieldData.map((e)=>{
+      return(
+        <div  className='contact-text-block' key={e.id}>
+          <label>{e.fieldName}</label>
+          <input type="text" placeholder={e.placeholder}/>
+        </div>
+      );
+     })}</div>
+    <div className='contact-text-block'>
+      <label htmlFor="message">Message</label>
+      <textarea id="message" placeholder="Enter your message here">Enter your Message</textarea>
+      </div>      
+      <button className='contact-btn'>Submit</button>
+
     </section>
   );
 }

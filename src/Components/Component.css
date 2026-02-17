@@ -107,7 +107,11 @@ button{
   padding: 4rem 10%;
   height: calc(100vh - 4rem);
   width: 100vw;
-  
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(1px);
+
   gap: 2rem;
   animation: fadeUp 1s linear;
   animation-timeline: view();
@@ -481,28 +485,41 @@ View Course starts here
 .contact-text{
   height: 60vh;
   width: 50vw;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(3px);
   border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.contact-text input{
-  width: 80%;
-  height: 10%;
-  border-radius: 1rem;
-  margin: auto;
-  text-align: center;
+.contact-text-block{
+  display: flex;
+  flex-direction: column;
 }
 
-textarea{
-  height: 30%;
-  width: 80%;
-  border-radius: 1rem;
-  margin: auto;
-  text-align: center;
+.contact-text-block label{
+  font-size: 1rem;
+  color: var(--accent-color);
+  margin-bottom: 5px;
 }
 
+.contact-text-block input{
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+ 
+  font-size: 1.5rem;
+}
+
+
+.contact-btn{
+  width: 100%;
+   border: 1px solid var(--border-color);
+   border-radius: 5px;
+   background-color: var(--accent-color);
+   margin-top: 5px ;
+}
 
 /*================================================================
 Media queries starts here
