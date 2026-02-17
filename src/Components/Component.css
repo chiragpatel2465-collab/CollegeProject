@@ -1,7 +1,14 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
-
+:root{
+  --primary-color:#F0EFE1;
+  --secondarary-color :#374151;
+  --accent-color :#4D7C0F;
+ --primary-green: #2d6a4f;
+  --light-gray: #f8f9fa;
+  --border-color: #dee2e6;
+  --text-dark: #333;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
 
 *{
   margin: 0;
@@ -21,8 +28,8 @@ header{
 }
 
 .logo{
-  color: #EDF2F4;
-  background-color:#8D99AE;
+  color: var(--accent-color);
+  background-color:var(--primary-color);
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -40,7 +47,8 @@ header{
 
 .grid{
  display: grid; 
- background: transparent;
+ background: var(--primary-color);
+ border-radius: 2rem;
 }
 
 .Nav-grid{
@@ -55,12 +63,12 @@ nav ul{
   display: flex;
   justify-content: flex-end;
   gap: 3.2rem;
-  
+  background-color: var(--primary-color);
 }
 .link{
   text-decoration: none;
   list-style: none;
-  color: #EDF2F4;
+  color: var(--accent-color);
 }
 li{
   transform: scale(1);
@@ -83,7 +91,7 @@ button{
   height: 25px;
   width: 35px;
   background-color: transparent;
-  color: #2B2D42;
+  color: var(--secondarary-color);
   font-weight: 900;
   border: none;
 }
@@ -97,7 +105,7 @@ button{
   align-items: center;
   justify-content: space-between;
   padding: 4rem 10%;
-  height: 80vh;
+  height: calc(100vh - 4rem);
   width: 100vw;
   
   gap: 2rem;
@@ -115,17 +123,18 @@ button{
 .hero-title {
   font-size: 3.5rem;
   line-height: 1.2;
-  color: #2d3436;
+  color:var(--accent-color);
   margin-bottom: 1.5rem;
 }
 
 .highlight {
-  color: #0984e3;
+  color:var(--secondarary-color);
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
-  color: #636e72;
+  font-family: 'Montserrat', sans-serif;
+  color:var(--primary-color);
   margin-bottom: 2rem;
   line-height: 1.6;
 }
@@ -144,8 +153,8 @@ button{
   text-align: center;
   margin-bottom: 10px;
   padding: 0.8rem 2rem;
-  background-color: #0984e3;
-  color: white;
+  background-color:#6B9E49 ;
+  color: #F0EFE1;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -193,10 +202,305 @@ button{
     justify-content: center;
   }
 
-  .hero-image-container {
+.hero-image-container{
     order: -1;
    /* Moves image above text on mobile */
   }
+}
+/*=============================================================
+        CourseCard starts here
+==============================================================*/
+h1{
+  text-align: center;
+  color: navy;
+  font-family: Times New Roman;
+}
+
+.CourseCard-container ul{
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.card-container {
+  display: inline-block;
+  width: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px;
+}
+
+.card-container:hover {
+  transform: translateY(-10px);
+}
+
+.card-header {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 15px;
+  background-image: url('https://lnct.ac.in/wp-content/uploads/2021/05/what-is-information-technology-2048x2048.jpg');
+}
+
+/* Glassmorphism Effect for the title over the image */
+.category-tag {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  padding: 8px 15px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card-body {
+  padding: 20px;
+  
+  
+}
+
+.course-title {
+  margin: 0 0 20px 0;
+  font-size: 1.4rem;
+  color: var(--secondarary-color);
+  font-weight: 700;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 25px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--secondarary-color);
+}
+
+/* Specific styling for the wide Fees section */
+.stat-item:last-child {
+  grid-column: span 2;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.view-details-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent-color);
+  color: var(--secondarary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  
+}
+
+.view-details-btn:hover {
+  background: #303f9f;
+  box-shadow: 0 5px 15px rgba(63, 81, 181, 0.3);
+}
+
+/*================================================================
+View Course starts here
+================================================================*/
+
+.Vcourse-container {
+  padding: 20px;
+  background-color: transparent;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Vcourse-card {
+ 
+  width: 100%;
+  background-color: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(2px);
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.Vcourse-title {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.Vhero-image-container {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.Vhero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-section h2 {
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.about-section p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Grid System */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.info-box {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--primary-color);
+}
+
+.info-box-header {
+  background-color: var(--primary-green);
+  color: white;
+  margin: 0;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+}
+
+.info-box-body {
+  padding: 20px;
+  color: var(--secondarary-color);
+  font-size: 0.95rem;
+}
+
+.info-box-body ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+/* Buttons */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-green);
+  color: var(--primary-green);
+}
+
+.btn-solid {
+  background: var(--primary-green);
+  border: none;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Table */
+.comparison-table-wrapper {
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--light-gray);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.comparison-table th, .comparison-table td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.comparison-table th {
+  background: #f1f3f5;
+  color: #444;
+}
+
+/*================================================================
+  contact section starts here
+=================================================================*/
+
+.contact-text{
+  height: 60vh;
+  width: 50vw;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-text input{
+  width: 80%;
+  height: 10%;
+  border-radius: 1rem;
+  margin: auto;
+  text-align: center;
+}
+
+textarea{
+  height: 30%;
+  width: 80%;
+  border-radius: 1rem;
+  margin: auto;
+  text-align: center;
 }
 
 
@@ -248,4 +552,23 @@ Media queries starts here
     .mobile-menu li:last-child{
       margin-bottom: 10px;
     }
-} 
+/*===============================================================
+  ViwwCourse starts here
+================================================================*/
+    .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .course-card {
+    padding: 20px;
+  }
+
+  .course-title {
+    font-size: 1.8rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+}
+
+}

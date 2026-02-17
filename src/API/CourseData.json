@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "course_name": "Computer Engineering",
+    "duration": "4 Years",
+    "intakes": ["June", "September"],
+    "tuition_fees": "₹1,20,000 - ₹1,50,000 per year"
+  },
+  {
+    "id": 2,
+    "course_name": "Civil Engineering",
+    "duration": "4 Years",
+    "intakes": ["June", "September"],
+    "tuition_fees": "₹1,00,000 - ₹1,30,000 per year"
+  },
+  {
+    "id": 3,
+    "course_name": "Computer Science & Engineering",
+    "duration": "4 Years",
+    "intakes": ["June", "September"],
+    "tuition_fees": "₹1,25,000 - ₹1,60,000 per year"
+  },
+  {
+    "id": 4,
+    "course_name": "Mechanical Engineering",
+    "duration": "4 Years",
+    "intakes": ["June", "September"],
+    "tuition_fees": "₹1,00,000 - ₹1,40,000 per year"
+  },
+  {
+    "id": 5,
+    "course_name": "Information Technology",
+    "duration": "4 Years",
+    "intakes": ["June", "September"],
+    "tuition_fees": "₹1,10,000 - ₹1,50,000 per year"
+  },
+  {
+    "id": 6,
+    "course_name": "Master of Computer Applications",
+    "duration": "2 Years",
+    "intakes": ["July", "October"],
+    "tuition_fees": "₹80,000 - ₹1,20,000 per year"
+  }
+]
