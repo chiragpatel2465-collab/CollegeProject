@@ -31,6 +31,7 @@ export const mockClubs = [
       { src: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&q=80", caption: "Inter-college Tournament 2024" },
       { src: "https://images.unsplash.com/photo-1546415413-568b209d0dbe?w=800&q=80", caption: "Practice Session" },
       { src: "https://images.unsplash.com/photo-1526628610543-7f97a3f3b95a?w=800&q=80", caption: "Annual Sports Day" },
+      { src: "https://images.unsplash.com/photo-1627391507327-a8a443b4a1e0?w=800&q=80", caption: "winners"}
     ],
     whatsappQR: "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://chat.whatsapp.com/xxxxxxx"
   },

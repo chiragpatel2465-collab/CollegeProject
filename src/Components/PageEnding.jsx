@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import SectionTitle from "./UI/SectionTitle";
 
 function useVisible(threshold = 0.15) {
   const ref = useRef(null);
@@ -96,27 +97,18 @@ function CoreValues() {
   const [ref, visible] = useVisible();
 
   return (
-    <section ref={ref} className="bg-amber-50 py-24 px-6" id="core-values">
+    <section ref={ref} className="py-24 px-6" id="core-values">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <div className="flex items-center gap-3 mb-5">
-            <span className="block w-8 h-px bg-blue-500" />
-            <span className="text-blue-400 text-xs font-medium tracking-widest uppercase">
-              What we stand for
-            </span>
-          </div>
-          <h2
-            className="text-3xl sm:text-4xl font-semibold text-purple-950 max-w-lg leading-tight"
-            style={{ letterSpacing: "-0.02em" }}
-          >
-            The values that guide everything we do
-          </h2>
-        </div>
+        <SectionTitle
+          mainText="What we stand for"
+          subText="The values that guide everything we do"
+        />
+       
 
         {/* Values grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 mt-10 lg:grid-cols-3 gap-5">
           {VALUES.map((value, i) => {
             const c = COLOR_MAP[value.color];
             return (
@@ -133,12 +125,12 @@ function CoreValues() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-purple-900 font-semibold text-base mb-2 tracking-tight">
+                <h3 className="text-purple-900 text-2xl font-serif mb-2 tracking-tight">
                   {value.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-amber-900 text-sm leading-relaxed">
+                <p className="text-purple-700 text-sm leading-relaxed">
                   {value.description}
                 </p>
               </div>

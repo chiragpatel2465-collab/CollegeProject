@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import MissionVision from "../../Components/Overview.jsx"
+import MissionVision from "../../Components/MissionVision.jsx"
 import PageEnding from "../../Components/PageEnding.jsx";
-
+import CTAsection from "../../Components/UI/CTAsection";
+import SectionTitle from "../../Components/UI/SectionTitle.jsx";
 
 const STATS = [
   { value: "20+", label: "Years of excellence" },
@@ -23,7 +24,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-amber-50 font-sans">
+    <div className="min-h-screen bg-purple-50 font-sans">
       {/* ── Hero Body ── */}
       <main className="relative bg-purple-900 pt-16 min-h-screen flex flex-col">
 
@@ -112,31 +113,25 @@ export default function About() {
       </main>
 
         {/*College Overview*/}
-      <div
-          className={`relative  my-12 flex items-center gap-3 mb-12 transition-all duration-700 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          <span className="block w-8 h-px bg-purple-700" />
-          <span className="text-purple-900 text-xl font-extrabold font-medium tracking-widest uppercase">
-            College Overview
-          </span>
-        </div>
-
+    <SectionTitle
+    mainText="Who we are"
+    subText="College Overview"
+    />
     <section className="h-auto grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-stretch px-6 bg-transparent">
     <div className="h-auto my-12 flex items-center justify-center">
        <img src="https://ssit.co.in/images/hero/why-ssit.webp" alt="College Image" 
-       className="h-[35vh] w-2/3 object-cover rounded-lg shadow-lg shadow-slate-500 bg-purple-500" />
+       className="h-[35vh] w-[90vw] lg:w-2/3 object-cover rounded-lg shadow-lg shadow-slate-500 bg-purple-500" />
     </div>
      <div className="flex flex-col justify-center px-6 py-3 gap-4 ">
         
-        <p className="text-purple-600 text-lg text-[1.1rem]">
+        <p className="text-purple-600  font-serif text-xs md:text-sm lg:text-md xl:text-lg">
          Founded in 2001 by the Satsang Shiksha Parishad, Shree Swaminarayan Institute of Technology (SSIT) leverages decades of academic and industrial expertise to deliver high-quality engineering education. Strategically situated between Ahmedabad and Gandhinagar, the institute offers a range of undergraduate and postgraduate programs designed to cultivate technically skilled, ethically-driven professionals ready to lead in the global marketplace.
         </p>
      </div>
     </section>
     <MissionVision/>
     <PageEnding/>
+    <CTAsection/>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {motion} from 'framer-motion'
 import { useParams, useNavigate , Link } from 'react-router-dom';
 import { useClubDetail } from '../hooks/useClubs';
 import { ArrowLeft, Volleyball, Code2, Mail, Phone, MessageCircle, X, User } from 'lucide-react';
@@ -91,7 +92,7 @@ export default function ClubDetailPage() {
           {/* Leader Card */}
           <div className="bg-white rounded-2xl shadow-sm p-6   border-l-4 border-l-amber-400 mb-6 flex flex-col md:flex-row items-center md:items-start gap-6 hover:shadow-md transition-all" >
             <AvatarFallback name={club.leader.name} url={club.leader.avatar} />
-            <div className="flex-grow text-center md:text-left">
+            <div className="text-center md:text-left">
               <h3 className="text-xl font-bold text-purple-900">{club.leader.name}</h3>
               <p className="text-sm font-medium text-amber-400" >{club.leader.role}</p>
               <div className="mt-4 flex flex-col md:flex-row gap-4 text-sm text-purple-600">
@@ -160,14 +161,18 @@ export default function ClubDetailPage() {
         {/* 5. Photo Gallery */}
         <section>
           <h2 className="text-2xl font-bold text-purple-900 mb-6">Our Moments</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex overflow-x-scroll gap-4">
             {club.gallery.map((image, idx) => (
-              <div key={idx} className="group cursor-pointer" onClick={() => setSelectedImage(image)}>
-                <div className="overflow-hidden rounded-xl bg-slate-100 aspect-video mb-2 shadow-sm">
+              <motion.div key={idx} className="group cursor-pointer" onClick={() => setSelectedImage(image)}
+              initial={{opacity:0, x: -500}}
+              animate={{opacity:1, x: 0}}
+              transition={{duration: 3}}
+              >
+                <div className="h-64 w-96 overflow-hidden rounded-xl bg-slate-100 aspect-video mb-2 shadow-sm">
                   <img src={image.src} alt={image.caption} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 </div>
                 <p className="text-sm text-amber-500 truncate px-1">{image.caption}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>

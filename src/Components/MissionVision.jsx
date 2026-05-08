@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import SectionTitle from "./UI/SectionTitle";
 
 const TABS = [
   {
@@ -56,26 +57,19 @@ export default function MissionVision() {
   return (
     <section
       ref={ref}
-      className="bg-amber-50 py-24 px-6"
+      className="py-24 px-6"
       id="mission-vision"
     >
       <div className="max-w-4xl mx-auto">
 
-        {/* Section label */}
-        <div
-          className={`flex items-center gap-3 mb-12 transition-all duration-700 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          <span className="block w-8 h-px bg-blue-500" />
-          <span className="text-blue-400 text-xs font-medium tracking-widest uppercase">
-            Who we are
-          </span>
-        </div>
+        <SectionTitle
+        mainText="Who we are"
+        subText="Mission and Vision"
+        />
 
         {/* Tab bar */}
         <div
-          className={`flex gap-2 p-1.5 bg-white border border-amber-200 rounded-full w-fit mb-14 transition-all duration-700 delay-100 ${
+          className={`flex gap-2 p-1.5 bg-white border mt-10 border-amber-200 rounded-full w-fit mb-14 transition-all duration-700 delay-100 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
@@ -118,14 +112,14 @@ export default function MissionVision() {
 
           {/* Heading */}
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-purple-900 leading-tight mb-8 max-w-3xl"
+            className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-serif text-purple-900 leading-tight mb-8 max-w-3xl"
             style={{ letterSpacing: "-0.025em" }}
           >
             {tab.heading}
           </h2>
 
           {/* Body */}
-          <p className="text-amber-400 text-lg  leading-relaxed max-w-2xl">
+          <p className="text-purple-500 text-md  leading-relaxed max-w-2xl">
             {tab.body}
           </p>
 

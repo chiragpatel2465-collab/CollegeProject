@@ -1,267 +1,310 @@
-import React, { useState, useEffect, useRef } from 'react';
-
-// --- Custom Hook: Intersection Observer for Scroll Reveals ---
-const useInView = (options = {}) => {
-  const [isInView, setIsInView] = useState(false);
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
+import Button from "../../Components/UI/Button";
+import CTAsection from "../../Components/UI/CTAsection";
+import SectionTitle from "../../Components/UI/SectionTitle";
+import {CourseGrid} from "./Coursespage";
+import { useCourses } from '../../hooks/useCourses';
+import {X} from 'lucide-react';
+import '../../App.css'
+// --- Custom Animated Counter (Replaces react-countup) ---
+const AnimatedCounter = ({ value, duration = 2.5, suffix = "" }) => {
   const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest) + suffix);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setIsInView(true);
-    }, { threshold: 0.1, ...options });
-
-    const currentRef = ref.current;
-    if (currentRef) observer.observe(currentRef);
-    return () => { if (currentRef) observer.unobserve(currentRef); };
-  }, [options]);
-
-  return [ref, isInView];
-};
-
-// --- Sub-component: Gradient Stat Card ---
-const StatCard = ({ end, label, suffix = "" }) => {
-  const [count, setCount] = useState(0);
-  const [ref, isInView] = useInView();
-  
   useEffect(() => {
     if (isInView) {
-      let start = 0;
-      const duration = 2000;
-      const increment = end / (duration / 16);
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= end) {
-          setCount(end);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(start));
-        }
-      }, 16);
-      return () => clearInterval(timer);
+      const controls = animate(count, value, { duration, ease: "easeOut" });
+      return controls.stop;
     }
-  }, [isInView, end]);
+  }, [count, value, duration, isInView]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+};
+
+// --- Data Arrays ---
+const features = [
+  {
+    icon: "🎓",
+    title: "Unified Information Hub",
+    desc: "All admission details, notices, and academic resources centralized in one place.",
+  },
+  {
+    icon: "🔐",
+    title: "Role-Based Access",
+    desc: "Separate secure portals tailored for students, faculty, and administration.",
+  },
+  {
+    icon: "📊",
+    title: "Real-Time Attendance",
+    desc: "Track attendance per subject instantly and stay on top of your academic requirements.",
+  },
+  {
+    icon: "📝",
+    title: "Assignment Management",
+    desc: "Submit, track, and manage your assignments with automated deadline reminders.",
+  },
+  {
+    icon: "🎯",
+    title: "Club Applications",
+    desc: "Create, manage, and join student clubs to enrich your campus experience.",
+  },
+  {
+    icon: "📢",
+    title: "Digital Notice Board",
+    desc: "Never miss important announcements, event updates, or urgent campus alerts.",
+  },
+];
+
+const stats = [
+  { num: 3000, label: "Students Served" },
+  { num: 50, label: "Courses Available" },
+  { num: 200, label: "Clubs & Societies" },
+  { num: 98, label: "Satisfaction Rate", suffix: "%" },
+];
+
+const faqs = [
+  {
+    q: "How do I create a student account?",
+    a: "New students will receive an enrollment link via their registered email upon admission. Simply click the link and follow the steps to set up your password.",
+  },
+  {
+    q: "Can I apply to create a new club?",
+    a: "Yes! Navigate to the 'Clubs' section in your portal and click 'Propose New Club'. You will need a faculty sponsor and at least 10 interested students.",
+  },
+  {
+    q: "How do I track my attendance?",
+    a: "Your real-time attendance dashboard is updated daily by faculty. You can view subject-wise breakdowns right from your portal homepage.",
+  },
+  {
+    q: "What happens if I miss an assignment deadline?",
+    a: "Late submissions may be subject to penalty depending on the professor's policy. The portal will automatically flag late submissions.",
+  },
+  {
+    q: "Can faculty post announcements?",
+    a: "Yes, faculty members have dedicated permissions to post class-specific announcements and upload resources directly to the digital notice board.",
+  },
+  {
+    q: "Is the portal mobile-friendly?",
+    a: "Absolutely. The entire portal is fully responsive and optimized for a seamless experience on smartphones, tablets, and desktops.",
+  },
+];
+
+// --- Sub-components ---
+const FAQItem = ({ faq }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div ref={ref} className="relative group">
-      <div className="absolute -inset-1 bg-linear-to-r from-[#7C3AED] to-[#F5A623] rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-      <div className="relative bg-[#0F172A]/80 backdrop-blur-xl border border-white/10 p-6 rounded-2xl text-center">
-        <div className="text-4xl md:text-5xl font-serif font-bold bg-linear-to-r from-white via-[#F5A623] to-[#7C3AED] bg-clip-text text-transparent">
-          {count}{suffix}
-        </div>
-        <div className="text-[10px] tracking-[0.3em] uppercase text-[#CBD5E1] mt-2 font-bold">{label}</div>
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className="border-b-2 border-purple-200 py-4 cursor-pointer"
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-between w-full focus:outline-none"
+      >
+        <h3 className="text-lg font-bold text-purple-900 text-left">
+          {faq.q}
+        </h3>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="text-purple-900 text-2xl"
+        >
+          ▼
+        </motion.div>
+      </button>
+
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? "auto" : 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden"
+      >
+        <p className="text-purple-700 mt-4 text-base leading-relaxed">
+          {faq.a}
+        </p>
+      </motion.div>
+    </motion.div>
   );
 };
 
+// --- Club Cards ---
+const Card=["image1","image2","image3","image4","image5","image6","image7","image8","image9","image10",]
+
+// --- Main Page Component ---
 export default function Home() {
-  const [activeFaq, setActiveFaq] = useState(null);
-
+  const { courses } = useCourses();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const subcourses = courses.slice(0, 3); // Show only top 6 courses on the homepage
   return (
-    <div className="bg-amber-50 text-[#F1F5F9] font-sans overflow-x-hidden">
-      {/* Dynamic CSS for Mesh Gradients & Modern Animations */}
-      <style>{`
-        @keyframes mesh {
-          0% { transform: translate(0,0) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0,0) scale(1); }
-        }
-        .mesh-blob {
-          position: absolute;
-          filter: blur(80px);
-          opacity: 0.4;
-          z-index: 0;
-          animation: mesh 20s infinite alternate;
-        }
-        .gradient-border-card {
-          position: relative;
-          background: linear-gradient(#0F172A, #0F172A) padding-box,
-                      linear-gradient(135deg, rgba(124,58,237,0.5), rgba(245,166,35,0.5)) border-box;
-          border: 1px solid transparent;
-        }
-        .animate-reveal {
-          animation: reveal 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-        }
-        @keyframes reveal {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
+    <div className="font-sans overflow-hidden bg-purple-50">
+      {/* ================= SECTION 1: HERO ================= */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#FBF7F0_0%,#E5D4F8_50%,#FEF3C7_100%)]">
+        {/* Floating Animated Shapes */}
+        <motion.div
+          className="absolute -top-20 -right-10 w-96 h-96 rounded-full bg-linear-to-br from-purple-400 to-purple-600 opacity-20 blur-3xl z-0"
+          animate={{ y: [0, 40, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/3 -left-20 w-72 h-72 rounded-full bg-linear-to-tr from-yellow-400 to-yellow-600 opacity-20 blur-3xl z-0"
+          animate={{ y: [0, -30, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
 
-      {/* Navigation */}
-      {/* <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-center">
-        <div className="w-full max-w-5xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-3 flex justify-between items-center shadow-2xl">
-          <div className="font-serif text-2xl font-bold flex items-center gap-2">
-            <div className="w-8 h-8 bg-linear-to-tr from-[#7C3AED] to-[#F5A623] rounded-lg"></div>
-            SS<span className="text-[#F5A623]">CT</span>
-          </div>
-          <div className="hidden md:flex space-x-8 text-sm font-medium">
-            {['Academics', 'Campus', 'Research', 'Portal'].map((item) => (
-              <a key={item} href="#" className="hover:text-[#F5A623] transition-colors">{item}</a>
-            ))}
-          </div>
-          <button className="bg-linear-to-r from-[#7C3AED] to-[#6D28D9] px-6 py-2 rounded-xl text-sm font-bold shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[#7C3AED]/60 transition-all">
-            Join Now
-          </button>
-        </div>
-      </nav> */}
+        <div className="max-w-5xl mx-auto px-6 z-10 text-center md:text-left mt-20 md:mt-0">
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="inline-block mb-6 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-sm border border-yellow-200 text-[#D97706] text-sm font-medium uppercase tracking-wider shadow-sm"
+          >
+            ✨ Shree Swaminarayan College of Technology
+          </motion.div>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
-        {/* Modern Mesh Background */}
-        <div className="mesh-blob w-[500px] h-[500px] bg-[#7C3AED] -top-20 -left-20" />
-        <div className="mesh-blob w-[400px] h-[400px] bg-[#F5A623] top-1/2 right-0" style={{ animationDelay: '-5s' }} />
-        <div className="mesh-blob w-[600px] h-[600px] bg-[#1E1B4B] -bottom-40 left-1/2" style={{ animationDelay: '-10s' }} />
-
-        <div className="relative z-10 text-center max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md animate-reveal">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F5A623] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F5A623]"></span>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-[#2D1B4E] leading-tight"
+          >
+            Your Gateway to a <br className="hidden md:block" />
+            <span className="bg-linear-to-r from-purple-900 via-yellow-600 to-purple-700 bg-clip-text text-transparent block mt-2 pb-2">
+              Brighter Future
             </span>
-            <span className="text-xs font-bold tracking-widest uppercase">Admissions Open 2026-27</span>
-          </div>
+          </motion.h1>
 
-          <h1 className="font-serif text-6xl md:text-8xl leading-[1.1] mb-8 animate-reveal" style={{ animationDelay: '0.2s' }}>
-            Elevate Your <br/>
-            <span className="bg-linear-to-r from-[#F5A623] via-white to-[#7C3AED] bg-clip-text text-transparent italic">Intellectual Journey</span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-[#CBD5E1] max-w-2xl mx-auto mb-12 animate-reveal" style={{ animationDelay: '0.4s' }}>
-            Where tradition meets innovation. Experience a digital-first campus designed for the next generation of global leaders.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center animate-reveal" style={{ animationDelay: '0.6s' }}>
-            <button className="group relative px-10 py-5 bg-white text-[#0F172A] rounded-2xl font-bold transition-all overflow-hidden">
-              <div className="absolute inset-0 bg-linear-to-r from-[#F5A623] to-[#7C3AED] opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative group-hover:text-white transition-colors">Apply Today</span>
-            </button>
-            <button className="px-10 py-5 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl font-bold hover:bg-white/10 transition-all">
-              Virtual Tour
-            </button>
-          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="text-lg md:text-xl text-purple-700 mb-10 max-w-2xl mx-auto md:mx-0 leading-relaxed"
+          >
+            A modern college portal designed to inform, inspire and connect
+            new students to campus life. Explore admissions, courses,
+            campus activities and connect with your future peers.
+          </motion.p>
+          <Button/>
+         
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-32 px-6 relative bg-[#0F172A]">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
-            <div className="max-w-2xl">
-              <h2 className="font-serif text-5xl md:text-6xl mb-6">Built for <span className="text-[#F5A623]">Excellence.</span></h2>
-              <p className="text-[#CBD5E1] text-lg">Our integrated ecosystem ensures every student, faculty member, and administrator stays connected with real-time data.</p>
-            </div>
-            <div className="h-1 grow bg-linear-to-r from-transparent via-white/20 to-transparent hidden md:block mb-4 mx-8" />
-          </div>
+  {/* ================= SECTION 2: Course Card Grid================= */} 
+      <div className="h-screen max-w-5xl mx-auto grid grid-cols-auto-1fr ">
+       <SectionTitle 
+       mainText="Explore Our Courses"
+       subText="Find the right programme to shape your future"/>
+      <CourseGrid courses={subcourses}/>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { i: "🎓", t: "Academic Hub", d: "Access curricula, research papers, and lecture notes in a single unified workspace." },
-              { i: "⚡", t: "Real-time Pulse", d: "Instant attendance tracking and subject-wise performance analytics." },
-              { i: "🛡️", t: "Secure Access", d: "Biometric and role-based login protocols for total data privacy." },
-              { i: "🤝", t: "Club Synergy", d: "Discover and join 50+ student-led organizations with a single tap." },
-              { i: "🔔", t: "Smart Alerts", d: "Never miss an exam or event with intelligent, context-aware notifications." },
-              { i: "📱", t: "Fluid Mobile", d: "A fully native experience across all your devices, anytime, anywhere." }
-            ].map((f, idx) => (
-              <div key={idx} className="gradient-border-card p-8 rounded-4xl group hover:-translate-y-3 transition-all duration-500">
-                <div className="w-14 h-14 bg-linear-to-br from-[#7C3AED]/20 to-[#F5A623]/20 rounded-2xl flex items-center justify-center text-2xl mb-6 border border-white/5 group-hover:scale-110 transition-transform">
-                  {f.i}
-                </div>
-                <h3 className="font-serif text-2xl font-bold mb-4">{f.t}</h3>
-                <p className="text-[#CBD5E1] text-sm leading-relaxed">{f.d}</p>
+
+    {/* ================= SECTION 3: CAMPUS LIFE ================= */}
+     <SectionTitle 
+       mainText="Campus Life" 
+       subText="Discover vibrant student communities and exciting activities"/>
+      <section className="w-full overflow-x-hidden mx-auto h-auto my-10 rounded-2xl border-3 border-purple-300">
+        <div className="flex carousel-track overflow-x-scroll hide-scrollbar h-full w-full p-5">
+          {Card.map((card,idx)=>{
+          return (<>
+            <div key={idx} className="flex flex-col w-120 h-80 mx-2 shrink-0" onClick={() => setSelectedImage(card)}>
+              <img src={card} alt="" className="bg-blue-500 w-full h-full rounded-2xl object-cover" />
+              <p className="text-xl font-bold text-purple-900 text-center">{card}</p>
+            </div>
+            </>
+          )
+          })}
+        </div>  
+         {selectedImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+            onClick={() => setSelectedImage(null)}
+          >
+            <X size={32} />
+          </button>
+          <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedImage.src} alt={selectedImage.caption} className="w-full h-auto max-h-[85vh] object-contain rounded-lg shadow-2xl" />
+            <p className="text-white text-center mt-4 text-lg">{selectedImage.caption}</p>
+          </div>
+        </div>
+      )}
+
+      </section>
+      {/* ================= SECTION 2: FEATURE CARDS ================= */}
+      <SectionTitle
+       mainText="Why Choose Our Portal?"
+       subText="Powerful features designed to make your college journey seamless"
+      />
+      <section className="bg-linear-to-b from-white via-purple-50 to-white py-24 px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {features.map((feature, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(74, 29, 150, 0.15)" }}
+              transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 300 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="bg-linear-to-br from-white to-purple-50 border-2 border-purple-100 rounded-2xl p-8 hover:border-[#D97706] transition-colors"
+            >
+              <div className="text-5xl mb-6 bg-white w-16 h-16 rounded-xl flex items-center justify-center shadow-sm border border-purple-50">
+                {feature.icon}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-24 px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          <StatCard end={3000} label="Students" suffix="+" />
-          <StatCard end={50} label="Programs" suffix="+" />
-          <StatCard end={98} label="Success" suffix="%" />
-          <StatCard end={200} label="Partners" suffix="+" />
-        </div>
-      </section>
-
-      {/* Modern CTA */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto relative rounded-[3rem] overflow-hidden bg-linear-to-br from-[#1E1B4B] to-[#0F172A] border border-white/10 p-12 md:p-24 text-center">
-          <div className="mesh-blob w-full h-full bg-[#7C3AED] top-0 left-0 opacity-10" />
-          <div className="relative z-10">
-            <h2 className="font-serif text-5xl md:text-7xl mb-8 leading-tight">Ready to start your <br/> <span className="text-[#F5A623]">legacy?</span></h2>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button className="px-12 py-5 bg-[#F5A623] text-black font-bold rounded-2xl hover:bg-white transition-colors shadow-[0_0_40px_rgba(245,166,35,0.3)]">
-                Enroll Now
-              </button>
-              <button className="px-12 py-5 bg-white/5 backdrop-blur-md border border-white/20 font-bold rounded-2xl hover:bg-white/10 transition-all">
-                Contact Office
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-32 px-6 max-w-4xl mx-auto">
-        <h2 className="font-serif text-5xl text-center mb-16">Support <span className="text-[#7C3AED]">&</span> Clarity</h2>
-        <div className="space-y-4">
-          {[
-            { q: "Is there a mobile application?", a: "Yes, our portal is progressive and can be installed as a PWA on iOS and Android devices." },
-            { q: "How do I reset my portal password?", a: "Use the 'Forgot Password' link on the login screen or contact the IT Helpdesk with your student ID." },
-            { q: "What are the lab timings?", a: "Computer and specialized engineering labs are open from 8:00 AM to 8:00 PM on weekdays." }
-          ].map((item, i) => (
-            <div key={i} className="border-b border-white/10">
-              <button 
-                onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                className="w-full py-8 flex justify-between items-center text-left"
-              >
-                <span className="text-xl font-serif">{item.q}</span>
-                <span className={`text-2xl transition-transform duration-500 ${activeFaq === i ? 'rotate-45 text-[#F5A623]' : ''}`}>+</span>
-              </button>
-              <div className={`overflow-hidden transition-all duration-500 ${activeFaq === i ? 'max-h-40 pb-8' : 'max-h-0'}`}>
-                <p className="text-[#CBD5E1] leading-relaxed">{item.a}</p>
-              </div>
-            </div>
+              <h3 className="text-2xl font-bold text-[#4A1D96] mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-purple-700 leading-relaxed">
+                {feature.desc}
+              </p>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-20 border-t border-white/5 bg-[#070B14]">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="col-span-2">
-            <div className="font-serif text-3xl font-bold mb-6">SS<span className="text-[#F5A623]">CT</span></div>
-            <p className="text-[#CBD5E1] max-w-md mb-8">Pioneering technical education through a blend of traditional values and modern technological infrastructure.</p>
-            <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#7C3AED] transition-colors cursor-pointer">IG</div>
-              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#7C3AED] transition-colors cursor-pointer">TW</div>
-              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#7C3AED] transition-colors cursor-pointer">LN</div>
-            </div>
-          </div>
-          <div>
-            <h4 className="font-bold mb-6 uppercase tracking-widest text-xs text-[#F5A623]">Quick Links</h4>
-            <ul className="space-y-4 text-sm text-[#CBD5E1]">
-              <li><a href="#" className="hover:text-white transition-colors">Student Handbook</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Library Catalog</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Campus Map</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold mb-6 uppercase tracking-widest text-xs text-[#F5A623]">Legal</h4>
-            <ul className="space-y-4 text-sm text-[#CBD5E1]">
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Use</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Anti-Ragging</a></li>
-            </ul>
+    
+    
+
+
+
+      {/* ================= SECTION 5: FAQ ================= */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A1D96] mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-purple-700">
+              Got questions? We have answers.
+            </p>
+            <div className="w-20 h-1 bg-linear-to-r from-purple-900 to-yellow-600 mx-auto mt-6 rounded-full" />
+          </motion.div>
+
+          <div className="space-y-2">
+            {faqs.map((faq, index) => (
+              <FAQItem key={index} faq={faq} />
+            ))}
           </div>
         </div>
-        <div className="text-center mt-20 pt-8 border-t border-white/5 text-[#CBD5E1] text-xs">
-          © 2026 Shree Swaminarayan College of Technology. Crafted for the future.
-        </div>
-      </footer>
+      </section>
+
+        {/* ================= SECTION 4: CALL TO ACTION ================= */}
+      <CTAsection/>
+     
     </div>
   );
 }

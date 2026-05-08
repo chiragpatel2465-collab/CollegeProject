@@ -1,87 +1,88 @@
-import {createBrowserRouter, Navigate} from 'react-router-dom'
+import React, { lazy, Suspense } from 'react';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import RootLayout from '../pages/RootLayout';
 import ProtectedRoute from './ProtectedRoute';
 import RoleRoute from './RoleRoute';
+import Loading from '../Components/Loading';
 
+// Helper to wrap components with Suspense
+const Loadable = (Component) => (props) => (
+  <Suspense fallback={<Loading />}>
+    <Component {...props} />
+  </Suspense>
+);
 
-//     Public Routes
-import Home from '../pages/public/Home'
-import About from '../pages/public/About'
-import CoursesPage from '../pages/public/Coursespage';
-import ClubsPage from '../pages/public/ClubsPage';
-import ContactPage from '../pages/public/ContactPage';
-import Admission from '../pages/public/Admission';
-import CampusLife from "../pages/public/CampusLife";
-import Login from '../pages/public/Login';
+// Public Routes
+const Home = Loadable(lazy(() => import('../pages/public/Home')));
+const About = Loadable(lazy(() => import('../pages/public/About')));
+const CoursesPage = Loadable(lazy(() => import('../pages/public/Coursespage')));
+const ClubsPage = Loadable(lazy(() => import('../pages/public/ClubsPage')));
+const ContactPage = Loadable(lazy(() => import('../pages/public/ContactPage')));
+const Admission = Loadable(lazy(() => import('../pages/public/Admission')));
+const CampusLife = Loadable(lazy(() => import('../pages/public/CampusLife')));
+const Login = Loadable(lazy(() => import('../pages/public/Login')));
 
-import CourseDetailPage from '../pages/CourseDetailPage';
-import ClubDetailPage from '../pages/ClubDetailPage';
+const CourseDetailPage = Loadable(lazy(() => import('../pages/CourseDetailPage')));
+const ClubDetailPage = Loadable(lazy(() => import('../pages/ClubDetailPage')));
 
+// Student Portal
+const StudentDashboard = Loadable(lazy(() => import('../pages/student/StudentDashboard')));
+const StudentAttendance = Loadable(lazy(() => import('../pages/student/StudentAttendance')));
+const Assignments = Loadable(lazy(() => import('../pages/student/Assignments')));
+const Notices = Loadable(lazy(() => import('../pages/student/Notices')));
 
-
-//Student Portal
-import StudentDashboard from '../pages/student/StudentDashboard';
-import StudentAttendance from '../pages/student/StudentAttendance'
-import Assignments from '../pages/student/Assignments';
-import Notices from '../pages/student/Notices';
-
-//Faculty portal
-import FacultyDashboard from '../pages/faculty/FacultyDashboard';
-import PostAssignments from '../pages/faculty/PostAssignments';
-import ViewStudents from '../pages/faculty/ViewStudents';
-import StudentDetail from '../pages/faculty/StudentDetail';
-import Timetable from '../pages/faculty/TimeTable';
-import FacultyNotices from '../pages/faculty/FacultyNotices'
-
+// Faculty portal
+const FacultyDashboard = Loadable(lazy(() => import('../pages/faculty/FacultyDashboard')));
+const PostAssignments = Loadable(lazy(() => import('../pages/faculty/PostAssignments')));
+const ViewStudents = Loadable(lazy(() => import('../pages/faculty/ViewStudents')));
+const StudentDetail = Loadable(lazy(() => import('../pages/faculty/StudentDetail')));
+const Timetable = Loadable(lazy(() => import('../pages/faculty/TimeTable')));
+const FacultyNotices = Loadable(lazy(() => import('../pages/faculty/FacultyNotices')));
 
 export const router = createBrowserRouter([
- { path : "/",
-  element : <RootLayout />,
-  children : [ { path : "/",                  element : <Home /> } ,
-               {path : "/about",             element : <About />},
-               {path : "/courses",           element : <CoursesPage />}, 
-               {path : "/clubs",             element : <ClubsPage />},
-               {path : "/contact",           element : <ContactPage />},
-               {path : "/Admissions",         element : <Admission />},
-               {path : "/CampusLife",        element : <CampusLife />},
-               {path : "/courses/:id",     element : <CourseDetailPage />},
-               {path : "/clubs/:id",       element : <ClubDetailPage />},
-               { path : "*",                  element : <Navigate to="/" replace /> },
-               {path : "/login",               element : <Login />}]
-              
-  },
-
   {
-    /* ── AUTH GATE: Check only IF logged in (No role check here) ── */
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/about", element: <About /> },
+      { path: "/courses", element: <CoursesPage /> },
+      { path: "/clubs", element: <ClubsPage /> },
+      { path: "/contact", element: <ContactPage /> },
+      { path: "/Admissions", element: <Admission /> },
+      { path: "/CampusLife", element: <CampusLife /> },
+      { path: "/courses/:id", element: <CourseDetailPage /> },
+      { path: "/clubs/:id", element: <ClubDetailPage /> },
+      { path: "*", element: <Navigate to="/" replace /> },
+      { path: "/login", element: <Login /> }
+    ]
+  },
+  {
     element: <ProtectedRoute />,
     children: [
       {
-        /* ── STUDENT ONLY ── */
         path: "/student",
         element: <RoleRoute allowedRole="student" />,
         children: [
           { path: "Dashboard", element: <StudentDashboard /> },
           { path: "Assignments", element: <Assignments /> },
-          { path: "Attendence" , element : <StudentAttendance />},
-          {path : "TimeTable" , element : <Timetable />},
-          {path : "Notices" , element : <Notices />}
+          { path: "Attendance", element: <StudentAttendance /> },
+          { path: "TimeTable", element: <Timetable /> },
+          { path: "Notices", element: <Notices /> }
         ],
       },
       {
-        /* ── FACULTY ONLY ── */
         path: "/faculty",
         element: <RoleRoute allowedRole="faculty" />,
         children: [
           { index: true, element: <FacultyDashboard /> },
           { path: "Assignments", element: <PostAssignments /> },
-          { path: "ViewStudents" , element : <ViewStudents />},
-          {path : "StudentDetail" , element : <StudentDetail />},
-          {path : "TimeTable" , element : <Timetable />},
-          {path : "Notices" , element : <FacultyNotices />}
+          { path: "ViewStudents", element: <ViewStudents /> },
+          { path: "StudentDetail", element: <StudentDetail /> },
+          { path: "TimeTable", element: <Timetable /> },
+          { path: "Notices", element: <FacultyNotices /> }
         ],
       },
     ],
   },
-
-
- ]);
+]);

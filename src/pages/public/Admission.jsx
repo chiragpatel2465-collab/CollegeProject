@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import SectionTitle from "../../Components/UI/SectionTitle";
 /* ─── Data ─────────────────────────────────────────────────── */
 
 const steps = [
@@ -64,15 +64,7 @@ const faqs = [
 
 /* ─── Sub-components ────────────────────────────────────────── */
 
-function SectionHeader({ label, title }) {
-  return (
-    <div className="mb-6">
-      <p className="text-xs tracking-widest uppercase text-purple-600 font-medium font-serif mb-1">{label}</p>
-      <h2 className="font-serif text-2xl font-bold text-purple-900 mb-2">{title}</h2>
-      <div className="w-12 h-0.5 bg-yellow-600 rounded" />
-    </div>
-  );
-}
+
 
 function FaqItem({ faq }) {
   const [open, setOpen] = useState(false);
@@ -104,7 +96,7 @@ export default function Admissions() {
     document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 font-serif bg-amber-50 min-h-screen">
+    <div className="w-full mx-auto px-4 py-10 font-serif bg-amber-50 min-h-screen">
 
       {/* ── Hero ── */}
       <div className="relative bg-purple-900 rounded-2xl overflow-hidden mb-10">
@@ -137,7 +129,7 @@ export default function Admissions() {
 
       {/* ── How to Apply ── */}
       <section className="mb-12">
-        <SectionHeader label="Admission process" title="How to apply" />
+        <SectionTitle mainText="Admission process" subText="How to apply" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {steps.map((s) => (
             <div
@@ -155,7 +147,7 @@ export default function Admissions() {
 
       {/* ── Programs ── */}
       <section className="mb-12">
-        <SectionHeader label="Academic programs" title="Programs available" />
+        <SectionTitle mainText="Academic programs" subText="Programs available" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {programs.map((p) => (
             <div
@@ -175,7 +167,7 @@ export default function Admissions() {
 
       {/* ── Documents ── */}
       <section className="mb-12">
-        <SectionHeader label="What to bring" title="Documents required" />
+        <SectionTitle mainText="Documents required" subText="What to bring" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {documents.map((doc) => (
             <div
@@ -191,7 +183,7 @@ export default function Admissions() {
 
       {/* ── FAQ ── */}
       <section className="mb-12">
-        <SectionHeader label="Common queries" title="Frequently asked questions" />
+        <SectionTitle mainText="Frequently asked questions" subText="Common queries" />
         <div className="border border-amber-200 rounded-xl overflow-hidden bg-white divide-y divide-amber-100">
           {faqs.map((faq, i) => (
             <FaqItem key={i} faq={faq} />
