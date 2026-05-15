@@ -211,7 +211,8 @@ export default function Home() {
      <SectionTitle 
        mainText="Campus Life" 
        subText="Discover vibrant student communities and exciting activities"/>
-      <section className="w-full overflow-x-hidden mx-auto h-auto my-15 rounded-2xl border-3 border-purple-300">
+
+      {/* <section className="w-full overflow-x-hidden mx-auto h-auto my-15 rounded-2xl border-3 border-purple-300">
         <div className="flex carousel-track overflow-x-scroll hide-scrollbar h-full w-full p-5">
           {Card.map((card,idx)=>{
           return (<>
@@ -241,7 +242,7 @@ export default function Home() {
         </div>
       )}
 
-      </section>
+      </section> */}
       {/* ================= SECTION 2: FEATURE CARDS ================= */}
       <SectionTitle
        mainText="Why Choose Our Portal?"
