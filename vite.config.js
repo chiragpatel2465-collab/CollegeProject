@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [react(),tailwindcss()],
   base : '/CollegeProject/',
   build: {
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks(id) {
