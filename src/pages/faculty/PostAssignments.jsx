@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import AssignmentCard from '../../components/faculty/AssignmentCard';
-import CreateAssignmentModal from '../../components/faculty/CreateAssignmentModal';
-import SubmissionsDrawer from '../../components/faculty/SubmissionsDrawer';
+import AssignmentCard from "../../Components/faculty/AssignmentCard";
+import CreateAssignmentModal from "../../Components/faculty/CreateAssignmentModal";
+import SubmissionsDrawer from "../../Components/faculty/SubmissionsDrawer";
 
 const initialAssignments = [
   { id: 1, subjectCode: "CS304", subjectName: "Object Oriented Programming", subjectType: "Lecture", title: "Inheritance & Polymorphism", description: "Build a mini project demonstrating all four OOP pillars using Java or C++. Include proper documentation and UML diagrams.", batch: "B.Tech Sem 3", section: "Section A", totalStudents: 32, submissionsCount: 28, dueDate: "2026-04-23T23:59", lastSubmissionDate: "2026-04-23", writingFormat: { side: "Single side", pages: 6 }, attachments: ["OOP_Project_Guidelines.pdf"], status: "Open", postedOn: "2026-04-09" },

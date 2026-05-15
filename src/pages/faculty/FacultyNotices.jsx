@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import PostNoticeModal from '../../components/faculty/PostNoticeModal';
+import React, { useState , useMemo } from 'react';
+import PostNoticeModal from "../../Components/faculty/PostNoticeModal";
 
 const initialNotices = [
   {
