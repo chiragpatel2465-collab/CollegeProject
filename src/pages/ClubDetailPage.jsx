@@ -3,6 +3,9 @@ import {motion} from 'framer-motion'
 import { useParams, useNavigate , Link } from 'react-router-dom';
 import { useClubDetail } from '../hooks/useClubs';
 import { ArrowLeft, Volleyball, Code2, Mail, Phone, MessageCircle, X, User } from 'lucide-react';
+import { useAuth } from '../Authentication/AuthContext';
+import { SportBanner } from '../Components/UI/HeroBanner';
+
 
 const IconMap = {
   Volleyball: Volleyball,
@@ -13,12 +16,14 @@ const IconMap = {
 const getInitials = (name) => name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
 
 export default function ClubDetailPage() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { user } = useAuth();
+  const [loggedIn, setLoggedIn] = useState(true);
   const { id } = useParams();
   const navigate = useNavigate();
   const { club } = useClubDetail(id);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  
   if (!club) return <div className="p-10 text-center text-slate-600">Club not found.</div>;
 
   const IconComponent = IconMap[club.icon] || User;
@@ -34,30 +39,30 @@ export default function ClubDetailPage() {
   );
 
   return (
-    <div className="min-h-screen bg-amber-50 pb-20">
+    <div className="min-h-screen bg-purple-50 pb-20">
       
       {/* 1. Hero Banner */}
-      <div className="pt-30 pb-16 px-6 relative bg-purple-800">
+      <div className="pt-30 pb-16 px-6 relative bg-linear-to-r from-purple-900 via-purple-700 to-yellow-500 backdrop-blur-2xl">
         <div className="max-w-5xl mx-auto">
                    
-          <div className="text-amber-400/70 text-sm mb-6 flex items-center space-x-2">
+          <div className="text-white text-sm mb-6 flex items-center space-x-2">
             <Link to="/" className="hover:text-amber-50">Home</Link>
             <span>&gt;</span>
             <Link to="/clubs" className="hover:text-amber-50">Clubs</Link>
             <span>&gt;</span>
-            <span className="text-amber-400">{club.name}</span>
+            <span className="text-white/80">{club.name}</span>
           </div>
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
-            <div className="bg-white/20 p-5 rounded-2xl backdrop-blur-sm border border-white/10 text-amber-400">
+            <div className="bg-white/20 p-5 rounded-2xl backdrop-blur-sm border border-white/10 text-yellow-500">
               <IconComponent size={48} />
             </div>
             <div>
               <span className="inline-block px-3 py-1 bg-amber-50/20 rounded-full text-yellow-400 text-xs font-semibold tracking-wider uppercase mb-3 backdrop-blur-sm">
                 {club.category}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-amber-50 mb-3" >{club.name}</h1>
-              <p className="text-lg text-yellow-400">{club.tagline}</p>
+              <h1 className="text-4xl md:text-5xl font-bold font-serif text-purple-50 mb-3" >{club.name}</h1>
+              <p className="text-lg text-white/60">{club.tagline}</p>
             </div>
           </div>
         </div>
@@ -120,7 +125,7 @@ export default function ClubDetailPage() {
         </section>
 
         {/* 4. How to Join */}
-       {loggedIn?( <section className="bg-amber-500 rounded-2xl shadow-sm p-8 border border-slate-100">
+       {loggedIn?( <section className="bg-white  rounded-2xl p-8 border border-purple-100">
           <h2 className="text-2xl font-bold text-slate-800 mb-8 text-center">How to Join</h2>
           
           {/* Visual Stepper */}

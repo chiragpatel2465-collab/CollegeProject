@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SectionTitle from "../../Components/UI/SectionTitle";
+import HeroBanner from "../../Components/UI/HeroBanner";
 /* ─── Data ─────────────────────────────────────────────────── */
 
 const steps = [
@@ -96,39 +97,19 @@ export default function Admissions() {
     document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="w-full mx-auto px-4 py-10 font-serif bg-amber-50 min-h-screen">
-
+    <div className="w-full mx-auto font-serif bg-purple-50 min-h-screen">
+      
       {/* ── Hero ── */}
-      <div className="relative bg-purple-900 rounded-2xl overflow-hidden mb-10">
-        <div className="h-1.5 bg-amber-400 w-full" />
-        <div className="p-10">
-          <span className="inline-block bg-amber-400/20 text-amber-400 text-xs tracking-widest uppercase px-4 py-1 rounded-full border border-amber-400/30 mb-5">
-            Admissions 2025 – 26
-          </span>
-          <h1 className="font-serif text-4xl font-bold text-amber-50 leading-tight mb-3">
-            Shape your future.<br />Begin here.
-          </h1>
-          <div className="w-14 h-0.5 bg-amber-400 rounded mb-5" />
-          <p className="text-purple-200 text-base leading-relaxed max-w-lg mb-7">
-            We invite committed students to join a tradition of academic excellence,
-            character, and service. Explore our programs and take the first step today.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={scrollToContact}
-              className="bg-amber-400 text-yellow-900 font-semibold text-sm px-7 py-2.5 rounded-lg hover:bg-amber-300 transition"
-            >
-              Apply now
-            </button>
-            <button className="bg-transparent text-amber-50 border border-white/30 text-sm px-7 py-2.5 rounded-lg hover:bg-white/10 transition">
-              Download prospectus
-            </button>
-          </div>
-        </div>
-      </div>
+      <HeroBanner
+      pageTitle="Shape your future, Begin Here."
+      pageDesc="We invite committed students to join a tradition of academic excellence,
+            character, and service. Explore our programs and take the first step today."
+      pageName="Admissions"/>
+
+     
 
       {/* ── How to Apply ── */}
-      <section className="mb-12">
+      <section className="px-10 mb-12">
         <SectionTitle mainText="Admission process" subText="How to apply" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {steps.map((s) => (
@@ -166,7 +147,7 @@ export default function Admissions() {
       </section>
 
       {/* ── Documents ── */}
-      <section className="mb-12">
+      <section className="mb-12 px-10">
         <SectionTitle mainText="Documents required" subText="What to bring" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {documents.map((doc) => (
@@ -182,7 +163,7 @@ export default function Admissions() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="mb-12">
+      <section className="mb-12 max-w-6xl mx-auto px-5">
         <SectionTitle mainText="Frequently asked questions" subText="Common queries" />
         <div className="border border-amber-200 rounded-xl overflow-hidden bg-white divide-y divide-amber-100">
           {faqs.map((faq, i) => (
@@ -192,7 +173,7 @@ export default function Admissions() {
       </section>
 
       {/* ── Contact / Apply CTA ── */}
-      <section id="contact-section" className="bg-purple-900 rounded-2xl overflow-hidden">
+      <section id="contact-section" className="bg-purple-900 max-w-7xl mx-auto rounded-2xl overflow-hidden">
         <div className="h-1.5 bg-amber-400 w-full" />
         <div className="p-8 sm:p-10">
           <h3 className="font-serif text-2xl font-bold text-amber-50 mb-1">Apply for admission</h3>

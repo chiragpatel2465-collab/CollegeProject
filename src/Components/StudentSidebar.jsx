@@ -37,7 +37,7 @@ const StudentSidebar = ({ isOpen, toggleSidebar }) => {
         />
       )}
 
-      <aside className={`fixed lg:static inset-y-0 left-0 h-[100vh] z-50 w-60 bg-purple-900 transition-transform duration-300 transform
+      <aside className={`fixed lg:static inset-y-0 left-0 h-screen z-50 w-60 bg-purple-900 transition-transform duration-300 transform
         ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} flex flex-col shadow-2xl lg:shadow-none`}>
 
         {/* Gold Accent Top Bar */}

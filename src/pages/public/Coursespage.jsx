@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCourses } from '../../hooks/useCourses';
 import { Clock, Banknote, Calendar, ArrowRight } from 'lucide-react';
+import HeroBanner from '../../Components/UI/HeroBanner';
 
 const CoursesPage = () => {
   const { courses } = useCourses();
@@ -9,13 +10,12 @@ const CoursesPage = () => {
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
       {/* Hero Banner */}
-      <div className="bg-purple-900 py-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl font-bold text-amber-400 mb-4">Explore Our Courses</h1>
-          <p className="text-amber-200 text-lg">Find the right programme to shape your future</p>
-        </div>
-      </div>
-
+      <HeroBanner
+      pageTitle="Explore Our Courses"
+      pageName="Courses"
+      pageDesc="Find the right programme to shape your future"
+      />
+     
       {/* Grid Section */}
       <div className="max-w-7xl mx-auto bg-purple-50 px-4 py-12">
        <CourseGrid courses={courses} />
@@ -34,7 +34,6 @@ export function CourseGrid({ courses }) {
           <div className="px-3 mt-5 flex flex-col h-full">
             <div className='flex flex-col gap-0 my-auto'>
             <h3 className="w-full text-2xl  font-serif font-bold bg-clip-text text-transparent bg-linear-to-r from-purple-900  to-yellow-500 mb-1">{course.name}</h3>
-            <p className="text-md font-sans text-yellow-500 font-bold mb-6">Code: {course.code}</p>
             </div>
 
             <div className="my-auto space-y-3 mb-8 text-purple-900">

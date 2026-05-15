@@ -11,7 +11,7 @@ const SectionTitle =({mainText,subText}) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.5 }}
-          className="text-center mt-16"
+          className="text-center my-5"
         >
           <h2 className="text-4xl md:text-5xl font-serif font-semibold text-purple-900 mb-4">
            {mainText}

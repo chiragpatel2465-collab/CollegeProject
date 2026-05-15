@@ -66,6 +66,7 @@ export const router = createBrowserRouter([
         children: [
           { path: "Dashboard", element: <StudentDashboard /> },
           { path: "Assignments", element: <Assignments /> },
+          { path: "Clubs", element: <ClubsPage /> },
           { path: "Attendance", element: <StudentAttendance /> },
           { path: "TimeTable", element: <Timetable /> },
           { path: "Notices", element: <Notices /> }
@@ -85,4 +86,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-]);
+]);

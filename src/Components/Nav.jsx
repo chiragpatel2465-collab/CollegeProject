@@ -11,10 +11,10 @@ const Nav = () => {
   const toggleMenu = () => setIsOpen(!isOpen)
   let navigateItems =()=>{
     if(!user){
-      return ["Home","About" , "Courses", "Clubs","Admissions", "Contact"]
+      return ["Home","About" , "Courses", "Clubs","CampusLife","Admissions", "Contact"]
     }
     if(user.role === "student"){
-      return ["Home","Dashboard","Attendence","Assignments","TimeTable","Notices"]
+      return ["Home","Dashboard","Attendance","Clubs","Assignments","TimeTable","Notices"]
     }
     if(user.role === "faculty"){
       return ["Home","FacultyDashboard","ViewStudents", "Assignments", "Notices", "TimeTable"]
@@ -41,7 +41,7 @@ const Nav = () => {
 
   return (
     <>
-    <div className=" flex justify-center fixed top-0 left-0 w-screen py-6 px-4  z-50 bg-transparent">
+    <div className=" flex justify-center fixed top-0 left-0 w-screen px-4  z-50 bg-transparent">
       <div className="flex  items-center justify-between  mx-auto px-3 py-3   rounded-full  w-full  max-w-auto  relative z-10">
         <div className="flex items-center">
           <motion.div

@@ -7,6 +7,8 @@ import {CourseGrid} from "./Coursespage";
 import { useCourses } from '../../hooks/useCourses';
 import {X} from 'lucide-react';
 import '../../App.css'
+import CreateClubForm from "../../Components/CreateClubForm";
+
 // --- Custom Animated Counter (Replaces react-countup) ---
 const AnimatedCounter = ({ value, duration = 2.5, suffix = "" }) => {
   const ref = useRef(null);
@@ -114,7 +116,7 @@ const FAQItem = ({ faq }) => {
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
-          className="text-purple-900 text-2xl"
+          className="text-purple-900 text-sm"
         >
           ▼
         </motion.div>
@@ -144,6 +146,7 @@ export default function Home() {
   const subcourses = courses.slice(0, 3); // Show only top 6 courses on the homepage
   return (
     <div className="font-sans overflow-hidden bg-purple-50">
+
       {/* ================= SECTION 1: HERO ================= */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#FBF7F0_0%,#E5D4F8_50%,#FEF3C7_100%)]">
         {/* Floating Animated Shapes */}
@@ -208,7 +211,7 @@ export default function Home() {
      <SectionTitle 
        mainText="Campus Life" 
        subText="Discover vibrant student communities and exciting activities"/>
-      <section className="w-full overflow-x-hidden mx-auto h-auto my-10 rounded-2xl border-3 border-purple-300">
+      <section className="w-full overflow-x-hidden mx-auto h-auto my-15 rounded-2xl border-3 border-purple-300">
         <div className="flex carousel-track overflow-x-scroll hide-scrollbar h-full w-full p-5">
           {Card.map((card,idx)=>{
           return (<>
@@ -244,7 +247,7 @@ export default function Home() {
        mainText="Why Choose Our Portal?"
        subText="Powerful features designed to make your college journey seamless"
       />
-      <section className="bg-linear-to-b from-white via-purple-50 to-white py-24 px-6">
+      <section className="bg-purple-50 mt-10  px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {features.map((feature, idx) => (
             <motion.div
@@ -276,8 +279,8 @@ export default function Home() {
 
 
       {/* ================= SECTION 5: FAQ ================= */}
-      <section className="bg-white py-24 px-6">
-        <div className="max-w-3xl mx-auto">
+      <section className="bg-purple-50 py-24 px-6">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -303,7 +306,14 @@ export default function Home() {
       </section>
 
         {/* ================= SECTION 4: CALL TO ACTION ================= */}
-      <CTAsection/>
+      <CTAsection
+      Header="Ready to be part of this?"
+      Desc="Join thousands of students who are building skills, friendships and memories that last a lifetime. Your campus journey starts here."
+      Primarybtn="Apply now"
+      PrimaryLink="/Admissions"
+      Secondarybtn="View courses"
+      SecondaryLink="/courses"
+      />
      
     </div>
   );

@@ -57,7 +57,7 @@ export default function MissionVision() {
   return (
     <section
       ref={ref}
-      className="py-24 px-6"
+      className="pb-24 px-6"
       id="mission-vision"
     >
       <div className="max-w-4xl mx-auto">
@@ -83,9 +83,9 @@ export default function MissionVision() {
                 className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   isActive
                     ? tabIsBlue
-                      ? "bg-purple-900 text-amber-400"
-                      : "bg-amber-400 text-amber-800"
-                    : "text-amber-400 hover:text-amber-200"
+                      ? "bg-linear-to-r from-purple-900 via-purple-700 to-yellow-500 text-white"
+                      : "bg-linear-to-r from-purple-900 via-purple-700 to-yellow-500 text-white"
+                    : "text-purple-900 hover:text-puprle-700"
                 }`}
               >
                 <span className={isActive ? "text-white" : "text-slate-500"}>

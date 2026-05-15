@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useClubs } from '../../hooks/useClubs';
 import { Volleyball, Code2, Medal, Lightbulb, MessageCircle, ArrowRight, User } from 'lucide-react';
+import HeroBanner from '../../Components/UI/HeroBanner';
 
 const IconMap = {
   Volleyball: Volleyball,
@@ -27,17 +28,17 @@ export default function ClubsPage() {
             <IconComponent size={32} />
           </div>
           
-          <h3 className="text-xl font-bold text-purple-800 mb-1">{club.name}</h3>
-          <p className="text-sm font-medium text-yellow-600 mb-3">{club.category} • {club.tagline}</p>
+          <h3 className="text-2xl font-bold font-serif text-purple-900 mb-1">{club.name}</h3>
+          <p className="text-md font-medium text-purple-700 mb-3">{club.category} • {club.tagline}</p>
           
-          <div className="flex items-center text-purple-600 text-sm mb-6 grow">
+          <div className="flex items-center text-purple-900 font-bold  text-md mb-6 grow">
             <User size={16} className="mr-2" />
-            <span>Leader: <span className="font-medium text-purple-800">{club.leaderName}</span></span>
+            <span>Leader: <span className="font-medium tx-sm text-purple-700">{club.leaderName}</span></span>
           </div>
           
           <div className="flex flex-col gap-3 mt-auto">
-           {LoggedIn? ( <a 
-              href={club.whatsappLink} 
+           {LoggedIn? ( <Link 
+              to={club.whatsappLink} 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center w-full py-2.5 px-4 rounded-xl border-2 text-sm font-semibold transition-colors text-purple-800 border-yellow-600"
@@ -45,11 +46,11 @@ export default function ClubsPage() {
             >
               <MessageCircle size={18} className="mr-2" />
               Join on WhatsApp
-            </a>
+            </Link>
             ):(<br/>)}
             <Link 
               to={`/clubs/${club.id}`}
-              className="flex items-center justify-center w-full py-2.5 px-4 rounded-xl text-amber-600 text-sm font-semibold transition-opacity hover:opacity-90 bg-purple-900"
+              className="flex items-center justify-center w-full py-2.5 px-4 rounded-xl text-white text-sm font-semibold transition-opacity hover:opacity-90 bg-linear-to-r from-purple-900 via-purple-700 to-yellow-500"
             >
               Know More
               <ArrowRight size={18} className="ml-2" />
@@ -61,16 +62,14 @@ export default function ClubsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-20">
+    <div className="min-h-screen bg-white pb-20">
       {/* Page Hero Banner */}
-      <div className="bg-linear-to-br from-purple-600 via-purple-950 to-purple-950 py-20 px-6 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 tracking-tight">Our Clubs & Communities</h1>
-        <p className="text-lg md:text-xl text-amber-200 max-w-2xl mx-auto">
-          Find your tribe, grow your skills, and build friendships that last.
-        </p>
-      </div>
-
-      <div className="max-w-7xl bg-amber-50 mx-auto px-6 mt-12 space-y-16">
+      <HeroBanner
+      pageTitle="Our Clubs & Communities"
+      pageName="Clubs"
+      pageDesc="Find your tribe, grow your skills, and build friendships that last."
+      />
+      <div className="max-w-7xl bg-purple-50 mx-auto px-6 mt-12 space-y-16">
         {/* Sports Category */}
         <section className='py-6 '>
           <div className="flex items-center mb-6">

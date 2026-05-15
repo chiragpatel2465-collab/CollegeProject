@@ -29,7 +29,7 @@ const MOCK_USERS = [
 ];
 
 export default function Login() {
-  const { login }    = useAuth();
+  const { login , user} = useAuth();
   const navigate     = useNavigate();
   const location     = useLocation();
   const from         = location.state?.from?.pathname || null;
@@ -61,8 +61,8 @@ export default function Login() {
 
     // Strip password before storing
     const { password: _pw, ...safeUser } = match;
-    login(safeUser);
-
+     login(safeUser);
+    
     // Redirect: go back to attempted page or default dashboard
     const destination =
       from && from.startsWith(`/${role}`)

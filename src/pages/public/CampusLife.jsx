@@ -1,10 +1,6 @@
-/* ─────────────────────────────────────────────────────────────
-   CampusLife.jsx
-   Sections: Hero, Gallery, Events & Fests, Sports,
-             Library & Cafeteria, CTA
-   Theme: Saffron · Purple · Gold  (60-30-10)
-   Style: Modern & energetic
-───────────────────────────────────────────────────────────── */
+import HeroBanner from "../../Components/UI/HeroBanner";
+import SectionTitle from "../../Components/UI/SectionTitle";
+import CTAsection from "../../Components/UI/CTAsection";
 
 const events = [
   {
@@ -92,51 +88,24 @@ const ctaPerks = [
   { num: "38",      label: "Programs offered"       },
 ];
 
-/* ── Reusable section header ── */
-function SectionHeader({ label, title }) {
-  return (
-    <div className="mb-6">
-      <p className="text-xs tracking-widest uppercase text-purple-600 font-semibold mb-1">{label}</p>
-      <h2 className="font-serif text-2xl font-bold text-purple-900 mb-2">{title}</h2>
-      <div className="w-11 h-0.5 bg-yellow-600 rounded" />
-    </div>
-  );
-}
+
 
 /* ── Main component ── */
 export default function CampusLife() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 bg-amber-50 min-h-screen">
+    <div className="max-w-8xl bg-purple-50 min-h-screen">
 
       {/* ── Hero ── */}
-      <div className="bg-purple-900 rounded-2xl overflow-hidden mb-10">
-        <div className="h-1.5 bg-amber-400 w-full" />
-        <div className="p-8 sm:p-12">
-          <span className="inline-block bg-amber-400/20 text-amber-300 text-xs tracking-widest uppercase px-4 py-1 rounded-full border border-amber-400/30 mb-5">
-            Campus life
-          </span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-amber-50 leading-tight mb-4">
-            Life beyond{" "}
-            <span className="text-amber-400">the classroom</span>
-          </h1>
-          <p className="text-purple-200 text-base leading-relaxed max-w-xl mb-8">
-            A vibrant campus where every student finds their passion — from sports courts
-            to fest stages, from library shelves to cafeteria conversations.
-          </p>
-          <div className="flex flex-wrap gap-8">
-            {heroStats.map((s) => (
-              <div key={s.label}>
-                <div className="font-serif text-2xl font-bold text-amber-400">{s.num}</div>
-                <div className="text-xs text-purple-300 mt-0.5">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
+      <HeroBanner
+      pageTitle="Life beyond the classroom"
+      pageDesc="A vibrant campus where every student finds their passion — from sports courts to fest stages, from library shelves to cafeteria conversations."
+      pageName="Campus Life"
+      />
+     
       {/* ── Gallery ── */}
+
       <section className="mb-12">
-        <SectionHeader label="Campus in pictures" title="Gallery" />
+        <SectionTitle mainText="Campus in pictures" subText="Gallery" />
         <div className="grid grid-cols-3 gap-3" style={{ gridTemplateRows: "auto" }}>
           {/* Tall card */}
           <div className="row-span-2 bg-purple-900 rounded-xl flex items-end p-3 min-h-60">
@@ -162,7 +131,7 @@ export default function CampusLife() {
 
       {/* ── Events & Fests ── */}
       <section className="mb-12">
-        <SectionHeader label="Celebrations & competitions" title="Events & fests" />
+        <SectionTitle mainText="Celebrate every moment" subText="Events & fests" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {events.map((e) => (
             <div
@@ -182,7 +151,7 @@ export default function CampusLife() {
 
       {/* ── Sports & Fitness ── */}
       <section className="mb-12">
-        <SectionHeader label="Stay active" title="Sports & fitness" />
+        <SectionTitle mainText="Stay active, stay healthy" subText="Sports & fitness" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {sports.map((s) => (
             <div key={s.title} className="bg-purple-900 rounded-xl p-6 text-center">
@@ -196,7 +165,7 @@ export default function CampusLife() {
 
       {/* ── Library & Cafeteria ── */}
       <section className="mb-12">
-        <SectionHeader label="Campus facilities" title="Library & cafeteria" />
+        <SectionTitle mainText="Campus facilities" subText="Library & cafeteria" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {facilities.map((f) => (
             <div
@@ -213,34 +182,15 @@ export default function CampusLife() {
       </section>
 
       {/* ── CTA Section ── */}
-      <section className="bg-purple-900 rounded-2xl overflow-hidden">
-        <div className="h-1.5 bg-amber-400 w-full" />
-        <div className="p-8 sm:p-12 text-center">
-          <h2 className="font-serif text-3xl font-bold text-amber-50 mb-3">
-            Ready to be part of this?
-          </h2>
-          <p className="text-purple-200 text-base leading-relaxed max-w-lg mx-auto mb-8">
-            Join thousands of students who are building skills, friendships and memories
-            that last a lifetime. Your campus journey starts here.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center mb-10">
-            <button className="bg-amber-400 text-yellow-900 font-semibold text-sm px-8 py-3 rounded-lg hover:bg-amber-300 transition">
-              Apply now
-            </button>
-            <button className="bg-transparent text-amber-50 border border-white/30 text-sm font-medium px-8 py-3 rounded-lg hover:bg-white/10 transition">
-              View courses
-            </button>
-          </div>
-          <div className="flex flex-wrap justify-center gap-8 pt-8 border-t border-white/10">
-            {ctaPerks.map((p) => (
-              <div key={p.label}>
-                <div className="font-serif text-lg font-bold text-amber-400">{p.num}</div>
-                <div className="text-xs text-purple-300 mt-0.5">{p.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CTAsection
+      Header="Ready to be part of this?"
+      Desc="Join thousands of students who are building skills, friendships and memories that last a lifetime. Your campus journey starts here."
+      Primarybtn="Apply now"
+      PrimaryLink="/Admissions"
+      Secondarybtn="View courses"
+      SecondaryLink="/courses"
+      />
+     
 
     </div>
   );

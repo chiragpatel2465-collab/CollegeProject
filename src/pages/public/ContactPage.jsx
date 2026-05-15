@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, Globe, MapPin, Clock } from 'lucide-react';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import HeroBanner from '../../Components/UI/HeroBanner';
 
 const SSIT_CONTACT = {
   name: "Shree Swaminarayan Institute of Technology",
@@ -73,18 +74,15 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-amber-50 font-sans">
+    <div className="min-h-screen bg-purple-50 font-sans">
       
       {/* ① Hero Banner */}
-      <section className="w-full bg-purple-900 py-16 relative overflow-hidden flex flex-col items-center justify-center">
-        {/* Subtle radial overlay */}
-        <div className="absolute inset-0 bg-purple-900 opacity-50 pointer-events-none"></div>
-        <div className="relative z-10 text-center px-6">
-          <p className="text-amber-400 text-sm mb-4">Home / Contact Us</p>
-          <h1 className="text-amber-400 text-4xl font-bold mb-3">Contact Us</h1>
-          <p className="text-amber-200 text-base max-w-lg mx-auto">Get in touch with us — we'd love to hear from you</p>
-        </div>
-      </section>
+      <HeroBanner
+      pageTitle="Contact Us"
+      pageDesc="Get in touch with us — we'd love to hear from you"
+      pageName="Contact"
+      />
+     
 
       {/* ② Two-Column Contact Section */}
       <section className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -266,7 +264,7 @@ export default function ContactPage() {
       </section>
 
       {/* ③ Google Maps Embed */}
-      <section className="w-full border-t border-slate-200 bg-slate-200">
+      <section className="w-full bg-purple-50 ">
         <div className="w-full h-72 md:h-96">
           <iframe
             src={SSIT_CONTACT.mapEmbedUrl}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useCourseDetail } from '../hooks/useCourses';
 import * as Icons from 'lucide-react';
-
+import CTAsection from '../Components/UI/CTAsection';
 const CourseDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,31 +18,26 @@ const CourseDetailPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-amber-50 pb-20 ">
+    <div className="min-h-screen bg-purple-50 pb-20 ">
       {/* 1. Hero Section */}
-      <div className="bg-linear-to-br  from-purple-700 to-purple-900 pt-8 pb-16 px-4 ">
+      <div className="bg-linear-to-r from-purple-900 via-purple-700 to-yellow-500 pt-8 pb-16 px-4 ">
         <div className='h-16'></div>
         <div className="max-w-6xl mx-auto">
-          {/*<Link
-            to="/courses"
-                 className="flex items-center text-indigo-200 hover:text-white mb-8 transition-colors ">
-            <Icons.ArrowLeft className="w-4 h-4 mr-2" /> Back to Courses
-          </Link>*/}
-          
-          <nav className="flex text-sm text-amber-400 mb-4 space-x-2 ">
+
+          <nav className="flex text-sm text-white mb-4 space-x-2 ">
             <Link to="/" className="hover:text-amber-200">Home</Link>
             <span>&gt;</span>
             <Link to="/courses" className="hover:text-amber-200">Courses</Link>
             <span>&gt;</span>
-            <span className="text-amber-200">{course.name}</span>
+            <span className="text-white/80">{course.name}</span>
           </nav>
 
-          <h1 className="text-4xl font-bold text-amber-100 mb-2">{course.fullTitle}</h1>
-          <p className="text-amber-200 mb-6 font-mono text-sm tracking-widest">{course.code}</p>
-          
+          <h1 className="text-4xl font-bold text-white font-serif mb-2">{course.fullTitle}</h1>
+
+
           <div className="flex flex-wrap gap-3">
             {[course.duration, course.eligibility, `Intakes: ${course.intakes.join(', ')}`].map((pill, i) => (
-              <span key={i} className="px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-amber-400 rounded-full text-sm">
+              <span key={i} className="inline-block px-4 py-1.5 text-white bg-transparent border border-white rounded-full text-sm">
                 {pill}
               </span>
             ))}
@@ -53,32 +48,32 @@ const CourseDetailPage = () => {
       <div className="max-w-6xl mx-auto px-6 -mt-8 space-y-12">
         {/* 2. Overview */}
         <section className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-          <h2 className="text-2xl font-bold text-purple-900 mb-4 flex items-center">
-            <Icons.Info className="w-6 h-6 mr-3 text-amber-400" /> Why This Course?
+          <h2 className="text-4xl font-bold font-serif text-purple-900 mb-4 flex items-center">
+            <Icons.Info className="w-6 h-6 mr-3 text-orange-500" /> Why This Course?
           </h2>
-          <p className="text-amber-800 leading-relaxed text-lg">{course.overview}</p>
+          <p className="text-purple-700 leading-relaxed  text-lg">{course.overview}</p>
         </section>
 
         {/* 3. Core Modules */}
         <section>
-          <h2 className="inline-block text-2xl font-bold text-purple-900 border-b-2 border-b-amber-400 pb-2 mb-6">Core Modules</h2>
+          <h2 className="inline-block text-2xl font-bold text-purple-900 border-b-2 border-b-orange-500 pb-2 mb-6">Core Modules</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {course.coreModules.map((module, i) => (
-              <div key={i} className="bg-white p-5 rounded-xl  border-l-4 border-l-amber-400 shadow-sm">
-                <IconComponent name={module.icon} className="w-8 h-8 text-yellow-600 mb-4" />
-                <h4 className="font-bold text-purple-900 mb-1">{module.title}</h4>
-                <p className="text-sm text-amber-800">{module.desc}</p>
+              <div key={i} className="bg-white p-5 rounded-xl  border-l-4 border-l-yellow-500 shadow-sm">
+                <IconComponent name={module.icon} className="w-8 h-8 text-orange-400 mb-4" />
+                <h4 className="font-bold text-purple-900 text-lg mb-1">{module.title}</h4>
+                <p className="text-sm text-purple-700">{module.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* 4. Career Prospects */}
-        <section className="bg-white p-8 border-l-4 border-l-purple-700 rounded-2xl  shadow-sm">
-          <h2 className="text-2xl font-bold text-purple-900 mb-6">Where This Takes You</h2>
+        <section className="bg-white p-8 border-l-4 border-l-purple-700 rounded-2xl font-serif  shadow-sm">
+          <h2 className="text-3xl font-bold text-purple-900 mb-6">Where This Takes You</h2>
           <div className="flex flex-wrap gap-3 ">
             {course.careerProspects.map((role, i) => (
-              <div key={i} className="flex items-center px-4 py-2 bg-amber-50 border border-amber-300 text-yellow-800 rounded-full font-medium">
+              <div key={i} className="flex items-center px-3  bg-amber-50 border border-amber-300 text-yellow-800 rounded-full font-medium">
                 <Icons.Briefcase className="w-4 h-4 mr-2 text-yellow-600" /> {role}
               </div>
             ))}
@@ -131,7 +126,7 @@ const CourseDetailPage = () => {
 
       {/* Zero-Library Lightbox */}
       {selectedImg && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-zoom-out"
           onClick={() => setSelectedImg(null)}
         >
@@ -144,32 +139,17 @@ const CourseDetailPage = () => {
           </div>
         </div>
       )}
-          {/* CTA SECTION */}
-    <section className="mt-16">
-      <div className="bg-purple-900 text-yellow-400 rounded-2xl px-6 py-12 text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-3">
-         Interested in {course.name}?
-        </h2>
+      {/* CTA SECTION */}
+      <CTAsection
+        Header={`Interested in ${course.name}?`}
+        Desc={`Begin your journey in ${course.name} at SSIT. Apply now or get in touch with us to learn more.`}
+        Primarybtn="Apply Now"
+        PrimaryLink="/Admissions"
+        Secondarybtn="Contact Us"
+        SecondaryLink="/Contact"
+      />
 
-         <p className="text-amber-100 max-w-2xl mx-auto mb-6 text-sm md:text-base">
-           Begin your journey in {course.name} at SSIT. Apply now or get in touch
-          with us to learn more.
-         </p>
-
-         <div className="flex flex-col sm:flex-row justify-center gap-4">
-           {/* Apply Button */}
-           <Link to="/Admissions" className="bg-amber-400 text-amber-800 font-medium px-6 py-3 rounded-lg hover:bg-yellow-100 transition">
-             Apply Now
-          </Link>
-
-       {/* Contact Button */}
-        <Link to="/Contact" className="border border-amber-50 text-amber-100 px-6 py-3 rounded-lg hover:bg-white/20 hover:text-amber-50 transition">
-         Contact Us
-       </Link>
-      </div>
-     </div>
-   </section>
-   </div>
+    </div>
   );
 };
 
