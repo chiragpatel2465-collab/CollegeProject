@@ -29,6 +29,7 @@ const ClubDetailPage = Loadable(lazy(() => import('../pages/ClubDetailPage')));
 const StudentDashboard = Loadable(lazy(() => import('../pages/student/StudentDashboard')));
 const StudentAttendance = Loadable(lazy(() => import('../pages/student/StudentAttendance')));
 const Assignments = Loadable(lazy(() => import('../pages/student/Assignments')));
+const TimeTable = Loadable(lazy(() => import('../pages/student/TimeTable')));
 const Notices = Loadable(lazy(() => import('../pages/student/Notices')));
 
 // Faculty portal
@@ -36,7 +37,7 @@ const FacultyDashboard = Loadable(lazy(() => import('../pages/faculty/FacultyDas
 const PostAssignments = Loadable(lazy(() => import('../pages/faculty/PostAssignments')));
 const ViewStudents = Loadable(lazy(() => import('../pages/faculty/ViewStudents')));
 const StudentDetail = Loadable(lazy(() => import('../pages/faculty/StudentDetail')));
-const Timetable = Loadable(lazy(() => import('../pages/faculty/TimeTable')));
+const Timetable = Loadable(lazy(() => import('../pages/faculty/Timetable')));
 const FacultyNotices = Loadable(lazy(() => import('../pages/faculty/FacultyNotices')));
 
 export const router = createBrowserRouter([
@@ -64,11 +65,12 @@ export const router = createBrowserRouter([
         path: "/student",
         element: <RoleRoute allowedRole="student" />,
         children: [
+          { index: true, element: <Navigate to="Dashboard" replace /> },
           { path: "Dashboard", element: <StudentDashboard /> },
           { path: "Assignments", element: <Assignments /> },
           { path: "Clubs", element: <ClubsPage /> },
           { path: "Attendance", element: <StudentAttendance /> },
-          { path: "TimeTable", element: <Timetable /> },
+          { path: "TimeTable", element: <TimeTable /> },
           { path: "Notices", element: <Notices /> }
         ],
       },
