@@ -84,14 +84,7 @@ const VALUES = [
   },
 ];
 
-const COLOR_MAP = {
-  blue:   { icon: "text-blue-400",   bg: "bg-blue-500/10",   border: "border-blue-500/20",   hover: "hover:border-blue-500/50"  },
-  indigo: { icon: "text-indigo-400", bg: "bg-indigo-500/10", border: "border-indigo-500/20", hover: "hover:border-indigo-500/50" },
-  teal:   { icon: "text-teal-400",   bg: "bg-teal-500/10",   border: "border-teal-500/20",   hover: "hover:border-teal-500/50"  },
-  amber:  { icon: "text-amber-400",  bg: "bg-amber-500/10",  border: "border-amber-500/20",  hover: "hover:border-amber-500/50" },
-  rose:   { icon: "text-rose-400",   bg: "bg-rose-500/10",   border: "border-rose-500/20",   hover: "hover:border-rose-500/50"  },
-  green:  { icon: "text-green-400",  bg: "bg-green-500/10",  border: "border-green-500/20",  hover: "hover:border-green-500/50" },
-};
+
 
 function CoreValues() {
   const [ref, visible] = useVisible();
@@ -110,27 +103,27 @@ function CoreValues() {
         {/* Values grid */}
         <div className="grid sm:grid-cols-2 mt-10 lg:grid-cols-3 gap-5">
           {VALUES.map((value, i) => {
-            const c = COLOR_MAP[value.color];
+           
             return (
               <div
                 key={value.title}
-                className={`group p-6 rounded-2xl border bg-white transition-all duration-500 ${c.border} ${c.hover} ${
+                className={`group p-6 rounded-2xl border bg-white transition-all duration-500  ${
                   visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
                 style={{ transitionDelay: visible ? `${i * 80}ms` : "0ms" }}
               >
                 {/* Icon */}
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${c.bg} ${c.icon}`}>
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 text-brand-purple bg-brand-light border border-brand-mid/20`}>
                   {value.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-purple-900 text-2xl font-serif mb-2 tracking-tight">
+                <h3 className="text-brand-primary text-2xl font-sans mb-2 font-semibold tracking-tight">
                   {value.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-purple-700 text-sm leading-relaxed">
+                <p className="text-brand-primary/70 text-sm leading-relaxed">
                   {value.description}
                 </p>
               </div>

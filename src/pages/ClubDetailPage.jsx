@@ -24,7 +24,7 @@ export default function ClubDetailPage() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   
-  if (!club) return <div className="p-10 text-center text-slate-600">Club not found.</div>;
+  if (!club) return <div className="p-10 text-center text-brand-primary/70">Club not found.</div>;
 
   const IconComponent = IconMap[club.icon] || User;
 
@@ -32,37 +32,37 @@ export default function ClubDetailPage() {
     url ? (
       <img src={url} alt={name} className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm" />
     ) : (
-      <div className="w-16 h-16 rounded-full   text-amber-400 flex items-center justify-center bg-purple-900 font-bold text-xl shadow-sm">
+      <div className="w-16 h-16 rounded-full text-brand-mid flex items-center justify-center bg-brand-primary font-bold text-xl shadow-sm">
         {getInitials(name)}
       </div>
     )
   );
 
   return (
-    <div className="min-h-screen bg-purple-50 pb-20">
+    <div className="min-h-screen bg-brand-light pb-20 text-brand-primary">
       
       {/* 1. Hero Banner */}
-      <div className="pt-30 pb-16 px-6 relative bg-linear-to-r from-purple-900 via-purple-700 to-yellow-500 backdrop-blur-2xl">
+      <div className="pt-30 pb-16 px-6 relative bg-gradient-to-r from-brand-primary via-brand-purple to-brand-mid backdrop-blur-2xl">
         <div className="max-w-5xl mx-auto">
                    
           <div className="text-white text-sm mb-6 flex items-center space-x-2">
-            <Link to="/" className="hover:text-amber-50">Home</Link>
+            <Link to="/" className="hover:text-white/90 transition-colors">Home</Link>
             <span>&gt;</span>
-            <Link to="/clubs" className="hover:text-amber-50">Clubs</Link>
+            <Link to="/clubs" className="hover:text-white/90 transition-colors">Clubs</Link>
             <span>&gt;</span>
             <span className="text-white/80">{club.name}</span>
           </div>
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
-            <div className="bg-white/20 p-5 rounded-2xl backdrop-blur-sm border border-white/10 text-yellow-500">
+            <div className="bg-white/20 p-5 rounded-2xl backdrop-blur-sm border border-white/10 text-white">
               <IconComponent size={48} />
             </div>
             <div>
-              <span className="inline-block px-3 py-1 bg-amber-50/20 rounded-full text-yellow-400 text-xs font-semibold tracking-wider uppercase mb-3 backdrop-blur-sm">
+              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-brand-light text-xs font-semibold tracking-wider uppercase mb-3 backdrop-blur-sm">
                 {club.category}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold font-serif text-purple-50 mb-3" >{club.name}</h1>
-              <p className="text-lg text-white/60">{club.tagline}</p>
+              <h1 className="text-4xl md:text-5xl font-bold font-serif text-white mb-3">{club.name}</h1>
+              <p className="text-lg text-white/70">{club.tagline}</p>
             </div>
           </div>
         </div>
@@ -71,38 +71,38 @@ export default function ClubDetailPage() {
       <div className="max-w-5xl mx-auto px-6 -mt-8 space-y-12 relative z-10">
         
         {/* 2. About — Mission & Vision */}
-        <section className="bg-white rounded-2xl shadow-sm p-8 border border-purple-100">
-          <h2 className="text-2xl font-bold text-purple-900 mb-6">About the Club</h2>
+        <section className="bg-white rounded-2xl shadow-sm p-8 border border-brand-mid/20">
+          <h2 className="text-2xl font-bold text-brand-primary mb-6">About the Club</h2>
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-amber-50 rounded-xl p-6 border  border-amber-800">
-              <h3 className="font-bold text-purple-950 mb-2 flex items-center">
-                <span className="w-2 h-2 rounded-full mr-3 bg-amber-600" ></span> Mission
+            <div className="bg-brand-light rounded-xl p-6 border border-brand-mid/30">
+              <h3 className="font-bold text-brand-primary mb-2 flex items-center">
+                <span className="w-2 h-2 rounded-full mr-3 bg-brand-purple"></span> Mission
               </h3>
-              <p className="text-yellow-900 leading-relaxed">{club.mission}</p>
+              <p className="text-brand-primary/75 leading-relaxed">{club.mission}</p>
             </div>
-            <div className="bg-amber-50 rounded-xl p-6 border border-amber-800">
-              <h3 className="font-bold text-purple-950 mb-2 flex items-center">
-                <span className="w-2 h-2 rounded-full mr-3 bg-amber-600"></span> Vision
+            <div className="bg-brand-light rounded-xl p-6 border border-brand-mid/30">
+              <h3 className="font-bold text-brand-primary mb-2 flex items-center">
+                <span className="w-2 h-2 rounded-full mr-3 bg-brand-mid"></span> Vision
               </h3>
-              <p className="text-amber-900 leading-relaxed">{club.vision}</p>
+              <p className="text-brand-primary/75 leading-relaxed">{club.vision}</p>
             </div>
           </div>
-          <p className="text-amber-900 leading-relaxed text-lg">{club.about}</p>
+          <p className="text-brand-primary/80 leading-relaxed text-lg">{club.about}</p>
         </section>
 
         {/* 3. Club Leader & Admins */}
         <section>
-          <h2 className="text-2xl font-bold text-purple-900 mb-6 border-b border-amber-400 pb-2">Meet the Team</h2>
+          <h2 className="text-2xl font-bold text-brand-primary mb-6 border-b border-brand-purple/40 pb-2">Meet the Team</h2>
           
           {/* Leader Card */}
-          <div className="bg-white rounded-2xl shadow-sm p-6   border-l-4 border-l-amber-400 mb-6 flex flex-col md:flex-row items-center md:items-start gap-6 hover:shadow-md transition-all" >
+          <div className="bg-white rounded-2xl shadow-sm p-6 border-l-4 border-l-brand-purple mb-6 flex flex-col md:flex-row items-center md:items-start gap-6 hover:shadow-md transition-all">
             <AvatarFallback name={club.leader.name} url={club.leader.avatar} />
             <div className="text-center md:text-left">
-              <h3 className="text-xl font-bold text-purple-900">{club.leader.name}</h3>
-              <p className="text-sm font-medium text-amber-400" >{club.leader.role}</p>
-              <div className="mt-4 flex flex-col md:flex-row gap-4 text-sm text-purple-600">
-                <a href={`mailto:${club.leader.email}`} className="flex items-center justify-center md:justify-start hover:text-purple-400 transition-colors"><Mail size={16} className="mr-2" /> {club.leader.email}</a>
-                <a href={`tel:${club.leader.phone}`} className="flex items-center justify-center md:justify-start hover:text-purple-400 transition-colors"><Phone size={16} className="mr-2" /> {club.leader.phone}</a>
+              <h3 className="text-xl font-bold text-brand-primary">{club.leader.name}</h3>
+              <p className="text-sm font-medium text-brand-purple">{club.leader.role}</p>
+              <div className="mt-4 flex flex-col md:flex-row gap-4 text-sm text-brand-purple/80">
+                <a href={`mailto:${club.leader.email}`} className="flex items-center justify-center md:justify-start hover:text-brand-mid transition-colors"><Mail size={16} className="mr-2" /> {club.leader.email}</a>
+                <a href={`tel:${club.leader.phone}`} className="flex items-center justify-center md:justify-start hover:text-brand-mid transition-colors"><Phone size={16} className="mr-2" /> {club.leader.phone}</a>
               </div>
             </div>
           </div>
@@ -110,14 +110,14 @@ export default function ClubDetailPage() {
           {/* Admins Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-6">
             {club.admins.map((admin, idx) => (
-              <div key={idx} className="bg-white rounded-2xl shadow-sm p-5 border border-slate-100 border-l-4 border-l-purple-700 flex items-center gap-4 hover:shadow-md transition-all">
+              <div key={idx} className="bg-white rounded-2xl shadow-sm p-5 border border-brand-mid/20 border-l-4 border-l-brand-purple flex items-center gap-4 hover:shadow-md hover:border-brand-purple/30 transition-all">
                 <div className="w-16 h-16">
                    <AvatarFallback name={admin.name} url={admin.avatar} />
                 </div>
                 <div className='ml-4'>
-                  <h4 className="font-bold text-purple-900">{admin.name}</h4>
-                  <p className="text-xs text-amber-400 font-medium mb-1">{admin.role}</p>
-                  <a href={`mailto:${admin.email}`} className="text-xs text-purple-500 hover:text-purple-600">{admin.email}</a>
+                  <h4 className="font-bold text-brand-primary">{admin.name}</h4>
+                  <p className="text-xs text-brand-purple font-medium mb-1">{admin.role}</p>
+                  <a href={`mailto:${admin.email}`} className="text-xs text-brand-mid hover:text-brand-purple transition-colors">{admin.email}</a>
                 </div>
               </div>
             ))}
@@ -125,30 +125,30 @@ export default function ClubDetailPage() {
         </section>
 
         {/* 4. How to Join */}
-       {loggedIn?( <section className="bg-white  rounded-2xl p-8 border border-purple-100">
-          <h2 className="text-2xl font-bold text-slate-800 mb-8 text-center">How to Join</h2>
+       {loggedIn?( <section className="bg-white rounded-2xl p-8 border border-brand-mid/20">
+          <h2 className="text-2xl font-bold text-brand-primary mb-8 text-center">How to Join</h2>
           
           {/* Visual Stepper */}
           <div className="relative flex flex-col md:flex-row justify-between items-start md:items-center max-w-3xl mx-auto mb-12 gap-8 md:gap-0">
             {/* Dashed line for desktop */}
-            <div className="hidden md:block absolute top-6 left-[10%] right-[10%] h-[2px] bg-indigo-200 border-t-2 border-dashed border-indigo-300 -z-10"></div>
+            <div className="hidden md:block absolute top-6 left-[10%] right-[10%] h-[2px] border-t-2 border-dashed border-brand-mid/40 -z-10"></div>
             
             {club.howToJoin.map((step) => (
               <div key={step.step} className="flex flex-col items-center text-center relative w-full md:w-1/3 bg-white z-10 px-4">
-                <div className="w-12 h-12 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xl mb-4 shadow-md ring-4 ring-white">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-primary via-brand-purple to-brand-mid text-white font-bold flex items-center justify-center text-xl mb-4 shadow-md ring-4 ring-white">
                   {step.step}
                 </div>
-                <h4 className="font-bold text-slate-800 mb-2">{step.title}</h4>
-                <p className="text-sm text-slate-500">{step.desc}</p>
+                <h4 className="font-bold text-brand-primary mb-2">{step.title}</h4>
+                <p className="text-sm text-brand-primary/70">{step.desc}</p>
               </div>
             ))}
           </div>
 
           <div className="flex flex-col items-center text-center mt-10">
-            <div className="p-4 bg-white rounded-2xl shadow-sm border border-slate-100 mb-4 inline-block">
+            <div className="p-4 bg-brand-surface rounded-2xl shadow-sm border border-brand-mid/20 mb-4 inline-block">
               <img src={club.whatsappQR} alt="WhatsApp QR Code" className="w-48 h-48 md:w-56 md:h-56 object-contain" />
             </div>
-            <p className="text-slate-500 mb-6 text-sm">Scan to join our WhatsApp group</p>
+            <p className="text-brand-primary/70 mb-6 text-sm">Scan to join our WhatsApp group</p>
             
             <a 
               href={club.whatsappLink} 
@@ -165,7 +165,7 @@ export default function ClubDetailPage() {
 
         {/* 5. Photo Gallery */}
         <section>
-          <h2 className="text-2xl font-bold text-purple-900 mb-6">Our Moments</h2>
+          <h2 className="text-2xl font-bold text-brand-primary mb-6">Our Moments</h2>
           <div className="flex overflow-x-scroll gap-4">
             {club.gallery.map((image, idx) => (
               <motion.div key={idx} className="group cursor-pointer" onClick={() => setSelectedImage(image)}
@@ -173,10 +173,10 @@ export default function ClubDetailPage() {
               animate={{opacity:1, x: 0}}
               transition={{duration: 3}}
               >
-                <div className="h-64 w-96 overflow-hidden rounded-xl bg-slate-100 aspect-video mb-2 shadow-sm">
+                <div className="h-64 w-96 overflow-hidden rounded-xl bg-brand-surface aspect-video mb-2 shadow-sm border border-brand-mid/20">
                   <img src={image.src} alt={image.caption} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 </div>
-                <p className="text-sm text-amber-500 truncate px-1">{image.caption}</p>
+                <p className="text-sm text-brand-purple truncate px-1">{image.caption}</p>
               </motion.div>
             ))}
           </div>
@@ -187,7 +187,7 @@ export default function ClubDetailPage() {
       {/* Lightbox Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-brand-dark-bg/90 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
           <button 

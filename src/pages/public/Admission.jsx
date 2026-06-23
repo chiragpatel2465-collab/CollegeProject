@@ -70,21 +70,21 @@ const faqs = [
 function FaqItem({ faq }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-amber-100 last:border-b-0">
+    <div className="border-b border-brand-mid/20 last:border-b-0">
       <button
-        className="w-full flex justify-between items-center px-5 py-4 text-left font-serif text-base font-semibold text-purple-800"
+        className="w-full flex justify-between items-center px-5 py-4 text-left font-serif text-base font-semibold text-brand-primary"
         onClick={() => setOpen(!open)}
       >
         {faq.q}
         <span
-          className="text-yellow-600 text-sm transition-transform duration-200"
+          className="text-brand-primary text-sm transition-transform duration-200"
           style={{ display: "inline-block", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
         >
           ▾
         </span>
       </button>
       {open && (
-        <p className="px-5 pb-4 text-sm text-amber-900 font-serif leading-relaxed">{faq.a}</p>
+        <p className="px-5 pb-4 text-sm text-brand-primary/80 font-serif leading-relaxed">{faq.a}</p>
       )}
     </div>
   );
@@ -97,7 +97,7 @@ export default function Admissions() {
     document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="w-full mx-auto font-serif bg-purple-50 min-h-screen">
+    <div className="w-full mx-auto font-serif bg-brand-surface min-h-screen">
       
       {/* ── Hero ── */}
       <HeroBanner
@@ -109,36 +109,34 @@ export default function Admissions() {
      
 
       {/* ── How to Apply ── */}
-      <section className="px-10 mb-12">
+      <section className="max-w-7xl mx-auto px-10 mb-12">
         <SectionTitle mainText="Admission process" subText="How to apply" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {steps.map((s) => (
             <div
               key={s.num}
-              className="bg-white border border-amber-200 rounded-xl p-4"
-              style={{ borderTop: "4px solid #FBBF24" }}
+              className="bg-white border border-brand-mid/20 rounded-xl p-4 border-t-4 border-t-brand-purple" 
             >
-              <div className="font-serif text-2xl font-bold text-yellow-600 mb-2">{s.num}</div>
-              <h4 className="font-serif font-semibold text-purple-800 text-sm mb-1">{s.title}</h4>
-              <p className="text-xs text-amber-800 leading-relaxed">{s.desc}</p>
+              <div className="font-serif text-2xl font-bold text-brand-primary mb-2">{s.num}</div>
+              <h4 className="font-serif font-semibold text-brand-purple text-sm mb-1">{s.title}</h4>
+              <p className="text-xs text-brand-primary/70 leading-relaxed">{s.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── Programs ── */}
-      <section className="mb-12">
+      <section className="max-w-7xl mx-auto mb-12">
         <SectionTitle mainText="Academic programs" subText="Programs available" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {programs.map((p) => (
             <div
               key={p.title}
-              className="bg-purple-50 border border-purple-200 rounded-xl p-5"
-              style={{ borderLeft: "4px solid #7C3AED" }}
+              className="bg-white border border-brand-mid/20 rounded-xl p-5 border-l-4 border-l-brand-purple"
             >
-              <h4 className="font-serif text-lg font-bold text-purple-900 mb-2">{p.title}</h4>
-              <p className="text-sm text-purple-700 leading-relaxed mb-4">{p.desc}</p>
-              <span className="inline-block bg-amber-50 text-yellow-800 border border-amber-300 text-xs px-3 py-1 rounded-md">
+              <h4 className="text-lg font-bold text-brand-primary mb-2">{p.title}</h4>
+              <p className="text-sm text-brand-primary/50 leading-relaxed mb-4">{p.desc}</p>
+              <span className="inline-block bg-brand-light text-brand-purple border border-brand-mid/20 text-xs px-3 py-1 rounded-md">
                 {p.duration}
               </span>
             </div>
@@ -147,25 +145,25 @@ export default function Admissions() {
       </section>
 
       {/* ── Documents ── */}
-      <section className="mb-12 px-10">
+      <section className="max-w-7xl mx-auto mb-12 px-10">
         <SectionTitle mainText="Documents required" subText="What to bring" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {documents.map((doc) => (
             <div
               key={doc}
-              className="flex items-start gap-3 bg-white border border-amber-200 rounded-xl px-4 py-3"
+              className="flex items-start gap-3 bg-brand-light border border-brand-mid/50 rounded-xl px-4 py-3"
             >
-              <div className="mt-1.5 min-w-2 h-2 w-2 rounded-full bg-yellow-600" />
-              <span className="text-sm text-amber-900 leading-relaxed">{doc}</span>
+              <div className="mt-1.5 min-w-2 h-2 w-2 rounded-full bg-brand-purple" />
+              <span className="text-sm text-brand-primary/50 leading-relaxed">{doc}</span>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section className="mb-12 max-w-6xl mx-auto px-5">
+      <section className="mb-12 max-w-7xl mx-auto px-5">
         <SectionTitle mainText="Frequently asked questions" subText="Common queries" />
-        <div className="border border-amber-200 rounded-xl overflow-hidden bg-white divide-y divide-amber-100">
+        <div className="border border-brand-mid/20 rounded-xl overflow-hidden bg-white divide-y divide-purple-700">
           {faqs.map((faq, i) => (
             <FaqItem key={i} faq={faq} />
           ))}
@@ -173,11 +171,11 @@ export default function Admissions() {
       </section>
 
       {/* ── Contact / Apply CTA ── */}
-      <section id="contact-section" className="bg-purple-900 max-w-7xl mx-auto rounded-2xl overflow-hidden">
-        <div className="h-1.5 bg-amber-400 w-full" />
+      <section id="contact-section" className="bg-linear-to-r from-brand-primary  to-brand-mid max-w-7xl mx-auto my-10 rounded-2xl overflow-hidden">
+       
         <div className="p-8 sm:p-10">
           <h3 className="font-serif text-2xl font-bold text-amber-50 mb-1">Apply for admission</h3>
-          <p className="text-purple-300 text-sm mb-7 leading-relaxed">
+          <p className="text-white/50 text-sm mb-7 leading-relaxed">
             Fill in your details below and our admissions team will get in touch with you shortly.
           </p>
 
@@ -185,19 +183,19 @@ export default function Admissions() {
             <input
               type="text"
               placeholder="Full name"
-              className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-amber-50 placeholder:text-white/40 outline-none focus:border-amber-400 transition font-serif"
+              className="w-full bg-white/20 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-brand-light placeholder:text-brand-light/40 outline-none focus:border-white/50 transition font-serif"
             />
             <input
               type="email"
               placeholder="Email address"
-              className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-amber-50 placeholder:text-white/40 outline-none focus:border-amber-400 transition font-serif"
+              className="w-full bg-white/20 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-brand-light placeholder:text-brand-light/40 outline-none focus:border-white/50 transition font-serif"
             />
             <input
               type="tel"
               placeholder="Mobile number"
-              className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-amber-50 placeholder:text-white/40 outline-none focus:border-amber-400 transition font-serif"
+              className="w-full bg-white/20 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-brand-light placeholder:text-brand-light/40 outline-none focus:border-white/50 transition font-serif"
             />
-            <select className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-amber-50 outline-none focus:border-amber-400 transition font-serif cursor-pointer">
+            <select className="w-full bg-white/20 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-brand-light placeholder:text-brand-purple outline-none focus:border-white/50 transition font-serif cursor-pointer">
               <option value="" disabled>Program of interest</option>
               <option>B.Tech / B.E.</option>
               <option>BCA</option>
@@ -208,10 +206,10 @@ export default function Admissions() {
           <textarea
             placeholder="Any additional message or query (optional)"
             rows={3}
-            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-amber-50 placeholder:text-white/40 outline-none focus:border-amber-400 transition resize-none mb-5 font-serif"
+            className="w-full bg-white/20 border border-white/20 rounded-lg px-4 py-2.5 text-sm text-brand-light placeholder:text-brand-light/40 outline-none focus:border-white/50 transition resize-none mb-5 font-serif"
           />
 
-          <button className="bg-amber-400 text-yellow-900 font-semibold text-sm px-8 py-3 rounded-lg hover:bg-amber-300 transition">
+          <button className="bg-brand-light text-brand-primary font-semibold text-sm px-8 py-3 rounded-lg hover:bg-brand-light/80 transition">
             Submit application
           </button>
 
@@ -222,8 +220,8 @@ export default function Admissions() {
               { label: "Email",             val: "admissions@college.edu.in" },
             ].map((item) => (
               <div key={item.label}>
-                <p className="text-amber-50 text-xs font-semibold mb-0.5">{item.label}</p>
-                <p className="text-purple-300 text-xs">{item.val}</p>
+                <p className="text-brand-light text-xs font-semibold mb-0.5">{item.label}</p>
+                <p className="text-brand-light/50 text-xs">{item.val}</p>
               </div>
             ))}
           </div>

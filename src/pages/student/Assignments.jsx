@@ -139,7 +139,7 @@ export default function Assignments() {
   const currentDate = new Date("2026-04-19").toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
   return (
-    <div className="min-h-screen bg-amber-50 font-sans text-gray-800 p-4 sm:p-6 lg:p-8 relative overflow-x-hidden">
+    <div className="min-h-screen bg-amber-50 font-sans text-gray-800 p-4 sm:p-6 lg:p-8 relative overflow-x-hidden pt-16">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap');
         .font-serif { font-family: 'Cormorant Garamond', serif; }

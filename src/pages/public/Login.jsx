@@ -75,20 +75,19 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-amber-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-brand-surface flex items-center justify-center p-4">
 
       {/* Card */}
-      <div className="bg-white rounded-2xl w-full max-w-md overflow-hidden border border-amber-200">
+      <div className="bg-white rounded-2xl w-full max-w-md overflow-hidden border border-brand-mid">
 
-        {/* Gold top accent */}
-        <div className="h-1.5 bg-amber-400 w-full" />
+        
 
         {/* Header */}
-        <div className="bg-purple-900 px-8 py-8 text-center">
-          <h1 className="font-serif text-3xl font-bold text-amber-50 mb-1">
+        <div className="bg-brand-primary px-8 py-8 text-center">
+          <h1 className="font-serif text-3xl font-bold text-brand-light mb-1">
             Welcome back
           </h1>
-          <p className="text-purple-300 text-sm">
+          <p className="text-brand-light/70 text-sm">
             Sign in to your college portal
           </p>
         </div>
@@ -97,7 +96,7 @@ export default function Login() {
         <div className="px-8 py-8">
 
           {/* Role toggle */}
-          <div className="flex gap-2 mb-6 bg-amber-50 p-1 rounded-xl border border-amber-200">
+          <div className="flex gap-2 mb-6 bg-brand-light/50 p-1 rounded-xl border border-brand-mid">
             {["student", "faculty"].map((r) => (
               <button
                 key={r}
@@ -105,8 +104,8 @@ export default function Login() {
                 onClick={() => { setRole(r); setError(""); }}
                 className={`flex-1 py-2 rounded-lg text-sm font-medium capitalize transition
                   ${role === r
-                    ? "bg-purple-900 text-amber-50"
-                    : "text-purple-700 hover:bg-amber-100"}`}
+                    ? "bg-linear-to-r from-brand-primary via-brand-purple to-brand-mid text-brand-light"
+                    : "text-brand-purple hover:bg-brand-mid/20"}`}
               >
                 {r === "student" ? "🎓 Student" : "👨‍🏫 Faculty"}
               </button>
@@ -117,7 +116,7 @@ export default function Login() {
 
             {/* Email */}
             <div>
-              <label className="block text-xs font-medium text-purple-800 mb-1.5">
+              <label className="block text-xs font-medium text-brand-purple mb-1.5">
                 Email address
               </label>
               <input
@@ -130,13 +129,13 @@ export default function Login() {
                     : "vikram.joshi@college.edu.in"
                 }
                 required
-                className="w-full bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 text-sm text-purple-900 placeholder:text-amber-400 outline-none focus:border-purple-400 transition"
+                className="w-full bg-white border border-brand-purple rounded-xl px-4 py-2.5 text-sm text-brand-purple placeholder:text-brand-purple/50 outline-none focus:border-brand-purple/20 transition"
               />
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-xs font-medium text-purple-800 mb-1.5">
+              <label className="block text-xs font-medium text-brand-purple mb-1.5">
                 Password
               </label>
               <div className="relative">
@@ -146,12 +145,12 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                   required
-                  className="w-full bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 text-sm text-purple-900 placeholder:text-amber-400 outline-none focus:border-purple-400 transition pr-10"
+                  className="w-full bg-white border border-brand-purple rounded-xl px-4 py-2.5 text-sm text-brand-purple placeholder:text-brand-purple/50 outline-none focus:border-brand-purple/20 transition pr-10"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-amber-500 hover:text-purple-700 text-xs"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-purple hover:text-brand-purple/50 text-xs"
                 >
                   {showPass ? "Hide" : "Show"}
                 </button>
@@ -169,7 +168,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-purple-900 text-amber-50 font-semibold py-3 rounded-xl hover:bg-purple-800 transition disabled:opacity-60 disabled:cursor-not-allowed mt-1"
+              className="w-full bg-linear-to-r from-brand-primary via-brand-purple to-brand-mid text-brand-light font-semibold py-3 rounded-xl hover:scale-1.05 transition disabled:opacity-60 disabled:cursor-not-allowed mt-1"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">

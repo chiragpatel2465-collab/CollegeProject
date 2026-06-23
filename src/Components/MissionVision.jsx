@@ -60,35 +60,32 @@ export default function MissionVision() {
       className="pb-24 px-6"
       id="mission-vision"
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
 
-        <SectionTitle
+        {/* <SectionTitle
         mainText="Who we are"
         subText="Mission and Vision"
-        />
+        /> */}
 
         {/* Tab bar */}
         <div
-          className={`flex gap-2 p-1.5 bg-white border mt-10 border-amber-200 rounded-full w-fit mb-14 transition-all duration-700 delay-100 ${
+          className={`flex gap-2 p-1.5 bg-white border mt-10 border-brand-mid/20 rounded-full w-fit mb-14 transition-all duration-700 delay-100 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
           {TABS.map((t) => {
             const isActive = active === t.id;
-            const tabIsBlue = t.id === "mission";
             return (
               <button
                 key={t.id}
                 onClick={() => handleTabChange(t.id)}
                 className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   isActive
-                    ? tabIsBlue
-                      ? "bg-linear-to-r from-purple-900 via-purple-700 to-yellow-500 text-white"
-                      : "bg-linear-to-r from-purple-900 via-purple-700 to-yellow-500 text-white"
-                    : "text-purple-900 hover:text-puprle-700"
+                    ? "bg-gradient-to-r from-brand-primary via-brand-purple to-brand-mid text-white shadow-lg shadow-brand-purple/20"
+                    : "text-brand-primary/70 hover:text-brand-purple"
                 }`}
               >
-                <span className={isActive ? "text-white" : "text-slate-500"}>
+                <span className={isActive ? "text-white" : "text-brand-purple"}>
                   {t.icon}
                 </span>
                 {t.label}
@@ -106,20 +103,20 @@ export default function MissionVision() {
           {/* Accent bar */}
           <div
             className={`w-10 h-1 rounded-full mb-8 transition-colors duration-300 ${
-              isBlue ? "bg-purple-500" : "bg-purple-500"
+              isBlue ? "bg-brand-purple" : "bg-brand-mid"
             }`}
           />
 
           {/* Heading */}
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-serif text-purple-900 leading-tight mb-8 max-w-3xl"
+            className="text-3xl sm:text-4xl lg:text-7xl font-medium font-sans text-brand-primary leading-tight mb-8 pr-10"
             style={{ letterSpacing: "-0.025em" }}
           >
             {tab.heading}
           </h2>
 
           {/* Body */}
-          <p className="text-purple-500 text-md  leading-relaxed max-w-2xl">
+          <p className="text-brand-primary/70 text-xl leading-relaxed max-w-4xl">
             {tab.body}
           </p>
 
@@ -132,10 +129,8 @@ export default function MissionVision() {
                 aria-label={`Switch to ${t.label}`}
                 className={`rounded-full transition-all duration-300 ${
                   active === t.id
-                    ? isBlue
-                      ? "w-6 h-2 bg-purple-500"
-                      : "w-6 h-2 bg-purple-500"
-                    : "w-2 h-2 bg-purple-700 hover:bg-purple-500"
+                    ? "w-6 h-2 bg-brand-purple"
+                    : "w-2 h-2 bg-brand-mid/40 hover:bg-brand-purple"
                 }`}
               />
             ))}

@@ -27,7 +27,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-purple-50 font-sans">
+    <div className="min-h-screen bg-brand-surface font-sans text-brand-primary">
       <HeroBanner
       pageTitle="About Us"
       pageName="About"
@@ -36,32 +36,32 @@ export default function About() {
       
     
         {/*College Overview*/}
-    <SectionTitle
+    {/* <SectionTitle
     mainText="Who we are"
     subText="College Overview"
-    />
-    <section className="h-screen lg:h-[50vh]  w-[90vw] mx-auto grid  grid-cols-1 lg:grid-cols-2 items-stretch">
-    <div className="h-full w-full  flex items-center justify-center">
+    /> */}
+    <section className="min-h-screen lg:h-[50vh] w-[90vw] mx-auto grid grid-cols-1 lg:grid-cols-2 items-stretch gap-6">
+    <div className="h-full w-full flex items-center justify-center rounded-3xl overflow-hidden">
        <img src="https://ssit.co.in/images/hero/why-ssit.webp" alt="College Image" 
-       className="h-full w-full object-cover rounded-lg shadow-lg shadow-slate-500 bg-purple-500" />
+       className="h-3/5 rounded-2xl w-full object-cover" />
     </div>
      <div className="flex flex-col w-full h-full justify-center px-6 py-3">
         
-        <p className="text-purple-900  font-serif font-semibold text-md md:text-sm lg:text-md xl:text-lg">
+        <p className="text-brand-primary/80 font-mono font-semibold text-md md:text-sm lg:text-md xl:text-lg leading-relaxed">
          Founded in 2001 by the Satsang Shiksha Parishad, Shree Swaminarayan Institute of Technology (SSIT) leverages decades of academic and industrial expertise to deliver high-quality engineering education. Strategically situated between Ahmedabad and Gandhinagar, the institute offers a range of undergraduate and postgraduate programs designed to cultivate technically skilled, ethically-driven professionals ready to lead in the global marketplace.
         </p>
          {/* ── Stats Strip ── */}
         <div>
-          <div className="max-w-7xl mx-auto mt-5 pt-5 lg:my-5 flex justify-evenly border-t-2 border-purple-200">
-            {STATS.map((stat, i) => (
+          <div className="max-w-7xl mx-auto mt-5 pt-5 lg:my-5 flex flex-col md:flex-row justify-evenly gap-4 border-t-2 border-brand-mid/20 pt-6">
+            {STATS.map((stat) => (
               <div
                 key={stat.label}
-                className={`flex flex-col items-center justify-center px-4 text-center`}
+                className="flex flex-col items-center justify-center px-4 text-center"
               >
-                <span className="text-2xl font-bold text-yellow-500 tracking-tight">
+                <span className="text-2xl font-bold text-brand-purple tracking-tight">
                   {stat.value}
                 </span>
-                <span className="text-xs font-bold lg:text-xs text-purple-700">{stat.label}</span>
+                <span className="text-xs font-bold lg:text-xs text-brand-primary/70">{stat.label}</span>
               </div>
             ))}
           </div>

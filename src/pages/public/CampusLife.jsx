@@ -1,6 +1,10 @@
 import HeroBanner from "../../Components/UI/HeroBanner";
 import SectionTitle from "../../Components/UI/SectionTitle";
 import CTAsection from "../../Components/UI/CTAsection";
+import { GiCoffeeCup, GiCricketBat} from "react-icons/gi";
+import { FaComputer, FaVolleyball } from "react-icons/fa6";
+import { HiMiniBookOpen } from "react-icons/hi2";
+import { MdSportsTennis } from "react-icons/md";
 
 const events = [
   {
@@ -38,32 +42,27 @@ const events = [
 ];
 
 const sports = [
-  { icon: "🏏", title: "Cricket",   desc: "Full-size ground with practice nets" },
-  { icon: "🏸", title: "Badminton", desc: "4 indoor courts, open daily" },
-  { icon: "🏐", title: "Volleyball", desc: "Outdoor & indoor courts available" },
+  { icon: <GiCricketBat/>, title: "Cricket",   desc: "Full-size ground with practice nets" },
+  { icon: <MdSportsTennis/>, title: "Badminton", desc: "4 indoor courts, open daily" },
+  { icon: <FaVolleyball/>, title: "Volleyball", desc: "Outdoor & indoor courts available" },
 ];
 
 const facilities = [
   {
-    icon: "📚",
+    icon: <HiMiniBookOpen />,
     title: "Central library",
     desc: "Over 40,000 books, 200+ journals, digital e-library access. Reading halls open 8 am – 9 pm, Mon – Sat.",
   },
   {
-    icon: "💻",
+    icon: <FaComputer />,
     title: "Digital resources",
     desc: "Online access to NPTEL, DELNET and research databases. Dedicated study pods with high-speed Wi-Fi.",
   },
   {
-    icon: "🍱",
-    title: "Main cafeteria",
+    icon: <GiCoffeeCup />,
+    title: "Canteen",
     desc: "Hygienic, affordable meals — breakfast, lunch and dinner. Separate Jain and non-Jain counters available.",
-  },
-  {
-    icon: "☕",
-    title: "Snack zones",
-    desc: "Two quick-bite canteens near the main block and hostel. Fresh juices, snacks and beverages all day.",
-  },
+  }
 ];
 
 const galleryItems = [
@@ -93,7 +92,7 @@ const ctaPerks = [
 /* ── Main component ── */
 export default function CampusLife() {
   return (
-    <div className="max-w-8xl bg-purple-50 min-h-screen">
+    <div className="bg-brand-surface min-h-screen">
 
       {/* ── Hero ── */}
       <HeroBanner
@@ -106,7 +105,7 @@ export default function CampusLife() {
 
       <section className="mb-12">
         <SectionTitle mainText="Campus in pictures" subText="Gallery" />
-        <div className="grid grid-cols-3 gap-3" style={{ gridTemplateRows: "auto" }}>
+        <div className="max-w-7xl mx-auto grid grid-cols-3 gap-3" style={{ gridTemplateRows: "auto" }}>
           {/* Tall card */}
           <div className="row-span-2 bg-purple-900 rounded-xl flex items-end p-3 min-h-60">
             <span className="bg-black/40 text-white text-xs px-2.5 py-1 rounded-md">Main auditorium</span>
@@ -124,7 +123,7 @@ export default function CampusLife() {
             <span className="bg-black/40 text-white text-xs px-2.5 py-1 rounded-md">Tech lab</span>
           </div>
         </div>
-        <p className="text-xs text-amber-700 mt-2">
+        <p className="text-xs text-center text-amber-700 mt-2">
           Replace the colored blocks above with real <code>&lt;img&gt;</code> tags in your project.
         </p>
       </section>
@@ -132,16 +131,16 @@ export default function CampusLife() {
       {/* ── Events & Fests ── */}
       <section className="mb-12">
         <SectionTitle mainText="Celebrate every moment" subText="Events & fests" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {events.map((e) => (
             <div
               key={e.title}
-              className={`bg-white border border-amber-100 rounded-xl p-5 border-t-4 ${e.color}`}
+              className="bg-white border border-brand-mid/20 rounded-xl p-5 border-t-4 border-brand-purple"
             >
               <div className="text-2xl mb-3">{e.icon}</div>
-              <h4 className="font-serif text-base font-bold text-purple-900 mb-2">{e.title}</h4>
-              <p className="text-xs text-amber-900 leading-relaxed mb-3">{e.desc}</p>
-              <span className={`inline-block text-xs font-medium px-2.5 py-1 rounded-md ${e.badge}`}>
+              <h4 className=" text-xl font-bold text-brand-primary mb-2">{e.title}</h4>
+              <p className="text-xs text-brand-primary/50 leading-relaxed mb-3">{e.desc}</p>
+              <span className="inline-block text-xs text-brand-purple font-medium px-2.5 py-1 rounded-md bg-brand-light border border-brand-mid/20">
                 {e.date}
               </span>
             </div>
@@ -150,32 +149,30 @@ export default function CampusLife() {
       </section>
 
       {/* ── Sports & Fitness ── */}
-      <section className="mb-12">
+      <section className="max-w-7xl mx-auto mb-12">
         <SectionTitle mainText="Stay active, stay healthy" subText="Sports & fitness" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {sports.map((s) => (
-            <div key={s.title} className="bg-purple-900 rounded-xl p-6 text-center">
-              <div className="text-4xl mb-3">{s.icon}</div>
-              <h4 className="font-serif text-lg font-bold text-amber-50 mb-1">{s.title}</h4>
-              <p className="text-sm text-purple-300">{s.desc}</p>
+            <div key={s.title} className="bg-brand-primary rounded-xl p-6 text-center">
+              <div className="inline-block p-3 bg-brand-light text-4xl mb-3 text-brand-purple border border-brand-purple rounded-xl">{s.icon}</div>
+              <h4 className="font-serif text-lg font-bold text-brand-light mb-1">{s.title}</h4>
+              <p className="text-sm text-brand-light/50">{s.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── Library & Cafeteria ── */}
-      <section className="mb-12">
+      <section className="max-w-7xl mx-auto mb-12">
         <SectionTitle mainText="Campus facilities" subText="Library & cafeteria" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {facilities.map((f) => (
             <div
               key={f.title}
-              className="bg-white border border-amber-200 rounded-xl p-5"
-              style={{ borderLeft: "4px solid #F59E0B" }}
-            >
-              <div className="text-2xl mb-2">{f.icon}</div>
-              <h4 className="font-serif text-base font-bold text-purple-900 mb-2">{f.title}</h4>
-              <p className="text-sm text-amber-900 leading-relaxed">{f.desc}</p>
+              className="bg-white border border-l-4 border-brand-purple rounded-xl p-5">
+              <div className="flex justify-center items-center h-12 w-12 text-brand-purple bg-brand-light border border-brand-mid/20 rounded-xl mb-4 text-3xl">{f.icon}</div>
+              <h4 className="font-serif text-base font-bold text-brand-primary mb-2">{f.title}</h4>
+              <p className="text-sm text-brand-primary/50 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
